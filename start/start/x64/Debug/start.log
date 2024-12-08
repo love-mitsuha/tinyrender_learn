@@ -1,6 +1,8 @@
-﻿  main.cpp
-D:\tinyrender_learn\start\main.cpp(23,20): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-D:\tinyrender_learn\start\main.cpp(24,20): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-D:\tinyrender_learn\start\main.cpp(25,20): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-D:\tinyrender_learn\start\main.cpp(26,20): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+﻿  Bresenham.cpp
+D:\tinyrender_learn\start\Bresenham.cpp(6,32): warning C4305: “+=”: 从“double”到“float”截断
+D:\tinyrender_learn\start\Bresenham.cpp(8,9): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+D:\tinyrender_learn\start\Bresenham.cpp(9,9): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+D:\tinyrender_learn\start\Bresenham.cpp(19,9): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+D:\tinyrender_learn\start\Bresenham.cpp(28,9): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+D:\tinyrender_learn\start\Bresenham.cpp(49,9): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
   start.vcxproj -> D:\tinyrender_learn\start\x64\Debug\start.exe

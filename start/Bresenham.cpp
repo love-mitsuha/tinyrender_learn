@@ -92,23 +92,23 @@ void line_four(int x1, int y1, int x2, int y2, TGAImage& image, TGAColor color)
 void line_bre(int x1, int y1, int x2, int y2, TGAImage& image, TGAColor color)
 {
 	bool swap = false;
-	if (x1 > x2)
-	{
-		std::swap(x1, x2);
-		std::swap(y1, y2);
-	}
-	if (std::abs(x2 - x1) < std::abs(y2 - y1))
+	if (std::abs(x2 - x1) < std::abs(y2 - y1))//必须先比较斜率再比较x1和x2正负
 	{
 		std::swap(x1, y1);
 		std::swap(x2, y2);
 		swap = true;
+	}
+	if (x1 > x2)
+	{
+		std::swap(x1, x2);
+		std::swap(y1, y2);
 	}
 	int dx = x2 - x1;
 	int dy = y2 - y1;
 	int derror = std::abs(dy * 2);
 	int error = 0;
 	int y = y1;
-	for (int x = x1; x < x2; x++)
+	for (int x = x1; x <= x2; x++)
 	{
 		if (swap)
 		{

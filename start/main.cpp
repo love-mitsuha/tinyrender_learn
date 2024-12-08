@@ -1,20 +1,22 @@
 #include "tgaimage.h"
 #include "Bresenham.h"
 #include "model.h"
+#include <iostream>
 const TGAColor white = TGAColor(255, 255, 255, 255);
 const TGAColor red   = TGAColor(255, 0,   0,   255);
 
 int main(int argc, char** argv) {
+    int width = 800;
+    int height = 800;
+    TGAImage image(width, height, TGAImage::RGB);
 	//line_bre(13, 20, 80, 40, image, white);
 	//line_bre(20, 13, 40, 80, image, red);
 	//line_bre(80, 40, 13, 20, image, red);
 	//image.flip_vertically(); // i want to have the origin at the left bottom corner of the image
 	//image.write_tga_file("output.tga");
+
     const char* filename = "african_head.obj";
     Model model=Model(filename);
-    int width = 1000;
-    int height =1000;
-    TGAImage image(width, height, TGAImage::RGB);
     for (int i = 0; i < model.nfaces(); i++) {
         std::vector<int> face = model.face(i);
         for (int j = 0; j < 3; j++) {
