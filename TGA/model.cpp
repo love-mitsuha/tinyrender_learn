@@ -52,3 +52,4 @@ Vec3f Model::vert(int i) {
     return verts_[i];
 }
 
+

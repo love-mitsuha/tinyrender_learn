@@ -124,12 +124,14 @@
     <ClCompile Include="..\TGA\tgaimage.cpp" />
     <ClCompile Include="Bresenham.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\TGA\geometry.h" />
     <ClInclude Include="..\TGA\model.h" />
     <ClInclude Include="..\TGA\tgaimage.h" />
     <ClInclude Include="Bresenham.h" />
+    <ClInclude Include="triangle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

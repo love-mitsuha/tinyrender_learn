@@ -1,5 +1,6 @@
 #include "tgaimage.h"
 #include "Bresenham.h"
+#include "geometry.h"
 
 void line_fir(int x1, int y1, int x2, int y2, TGAImage& image, TGAColor color)
 {
@@ -20,6 +21,7 @@ void line_sec(int x1, int y1, int x2, int y2, TGAImage& image, TGAColor color)
 		image.set(x, y, color);
 	}
 }
+
 void line_sec_test(int x1, int y1, int x2, int y2, TGAImage& image, TGAColor color)
 {
 	for (int x = x1; x < x2; x++)
@@ -29,6 +31,7 @@ void line_sec_test(int x1, int y1, int x2, int y2, TGAImage& image, TGAColor col
 		image.set(x, y, color);
 	}
 }
+
 void line_thir(int x1, int y1, int x2, int y2, TGAImage& image, TGAColor color)
 {
 	bool swap = false;
@@ -53,6 +56,7 @@ void line_thir(int x1, int y1, int x2, int y2, TGAImage& image, TGAColor color)
 			image.set(x, y, color);
 	}
 }
+
 void line_four(int x1, int y1, int x2, int y2, TGAImage& image, TGAColor color)
 {
 	bool swap = false;
@@ -89,6 +93,7 @@ void line_four(int x1, int y1, int x2, int y2, TGAImage& image, TGAColor color)
 		
 	}
 }
+
 void line_bre(int x1, int y1, int x2, int y2, TGAImage& image, TGAColor color)
 {
 	bool swap = false;
@@ -126,3 +131,12 @@ void line_bre(int x1, int y1, int x2, int y2, TGAImage& image, TGAColor color)
 		}
 	}
 }
+
+void line_hori(int x1, int x2, int y, TGAImage& image, TGAColor color)
+{
+	for (int x = x1; x <= x2; x++)
+	{
+		image.set(x, y, color);
+	}
+}
+

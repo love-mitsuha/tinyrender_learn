@@ -1,8 +1,20 @@
-﻿  Bresenham.cpp
-D:\tinyrender_learn\start\Bresenham.cpp(6,32): warning C4305: “+=”: 从“double”到“float”截断
-D:\tinyrender_learn\start\Bresenham.cpp(8,9): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
-D:\tinyrender_learn\start\Bresenham.cpp(9,9): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
-D:\tinyrender_learn\start\Bresenham.cpp(19,9): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
-D:\tinyrender_learn\start\Bresenham.cpp(28,9): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
-D:\tinyrender_learn\start\Bresenham.cpp(49,9): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+﻿  main.cpp
+D:\tinyrender_learn\start\main.cpp(39,102): warning C4244: “参数”: 从“t”转换到“t”，可能丢失数据
+D:\tinyrender_learn\start\main.cpp(39,102): warning C4244:         with
+D:\tinyrender_learn\start\main.cpp(39,102): warning C4244:         [
+D:\tinyrender_learn\start\main.cpp(39,102): warning C4244:             t=float
+D:\tinyrender_learn\start\main.cpp(39,102): warning C4244:         ]
+D:\tinyrender_learn\start\main.cpp(39,102): warning C4244:         and
+D:\tinyrender_learn\start\main.cpp(39,102): warning C4244:         [
+D:\tinyrender_learn\start\main.cpp(39,102): warning C4244:             t=int
+D:\tinyrender_learn\start\main.cpp(39,102): warning C4244:         ]
+D:\tinyrender_learn\start\main.cpp(39,67): warning C4244: “参数”: 从“t”转换到“t”，可能丢失数据
+D:\tinyrender_learn\start\main.cpp(39,67): warning C4244:         with
+D:\tinyrender_learn\start\main.cpp(39,67): warning C4244:         [
+D:\tinyrender_learn\start\main.cpp(39,67): warning C4244:             t=float
+D:\tinyrender_learn\start\main.cpp(39,67): warning C4244:         ]
+D:\tinyrender_learn\start\main.cpp(39,67): warning C4244:         and
+D:\tinyrender_learn\start\main.cpp(39,67): warning C4244:         [
+D:\tinyrender_learn\start\main.cpp(39,67): warning C4244:             t=int
+D:\tinyrender_learn\start\main.cpp(39,67): warning C4244:         ]
   start.vcxproj -> D:\tinyrender_learn\start\x64\Debug\start.exe
