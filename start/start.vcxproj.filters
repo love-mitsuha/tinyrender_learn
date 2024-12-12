@@ -30,6 +30,9 @@
     <ClCompile Include="triangle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="render.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\TGA\tgaimage.h">
@@ -45,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="triangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="render.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -132,6 +132,48 @@ void line_bre(int x1, int y1, int x2, int y2, TGAImage& image, TGAColor color)
 	}
 }
 
+void line(Vec2i p1, Vec2i p2, TGAImage& image, TGAColor color)
+{	
+	int x1 = p1.x;
+	int y1 = p1.y;
+	int x2 = p2.x;
+	int y2 = p2.y;
+	bool swap = false;
+	if (std::abs(x2 - x1) < std::abs(y2 - y1))//必须先比较斜率再比较x1和x2正负
+	{
+		std::swap(x1, y1);
+		std::swap(x2, y2);
+		swap = true;
+	}
+	if (x1 > x2)
+	{
+		std::swap(x1, x2);
+		std::swap(y1, y2);
+	}
+	int dx = x2 - x1;
+	int dy = y2 - y1;
+	int derror = std::abs(dy * 2);
+	int error = 0;
+	int y = y1;
+	for (int x = x1; x <= x2; x++)
+	{
+		if (swap)
+		{
+			image.set(y, x, color);
+		}
+		else
+		{
+			image.set(x, y, color);
+		}
+		error += derror;
+		if (error>dx)
+		{
+			y += y2 > y1 ? 1 : -1;//斜率为正还是负
+			error -= 2 * dx;
+		}
+	}
+}
+
 void line_hori(int x1, int x2, int y, TGAImage& image, TGAColor color)
 {
 	for (int x = x1; x <= x2; x++)

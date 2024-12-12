@@ -8,6 +8,8 @@ class Model {
 private:
 	std::vector<Vec3f> verts_;
 	std::vector<std::vector<int> > faces_;
+	std::vector<Vec2f> texcoords_;
+	std::vector<std::vector<int>>faces_texcoords;
 public:
 	Model(const char *filename);
 	~Model();
@@ -15,6 +17,8 @@ public:
 	int nfaces();
 	Vec3f vert(int i);
 	std::vector<int> face(int idx);
+	std::vector<int> face_texture(int idx);
+	Vec2f get_texture(int i);
 };
 
 #endif //__MODEL_H__

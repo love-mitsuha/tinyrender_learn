@@ -9,7 +9,7 @@ void openTrangle(Vec2i p0, Vec2i p1, Vec2i p2, TGAImage& image, TGAColor color)
 	line_bre(p2.x, p2.y, p0.x, p0.y, image, color);
 }
 
-void filledTrangleScan(Vec2i p0, Vec2i p1, Vec2i p2, TGAImage& image, TGAColor color)
+void filledTriangleScan(Vec2i p0, Vec2i p1, Vec2i p2, TGAImage& image, TGAColor color)
 {
 	if (p0.y > p1.y)
 		std::swap(p0, p1);
@@ -48,9 +48,11 @@ void filledTrangleScan(Vec2i p0, Vec2i p1, Vec2i p2, TGAImage& image, TGAColor c
 
 }
 
-Vec3f baryCentric(Vec2i p0, Vec2i p1, Vec2i p2, Vec2i p, TGAImage& image, TGAColor color)
+//计算中心坐标时一定要注意使用浮点 并且减少除法运算
+Vec3f baryCentric(Vec3f p0, Vec3f p1, Vec3f p2, Vec3f p)
 {
-	float ABx = p1.x - p0.x;
+	//这一版可能因为除法太多精度缺失
+	/*float ABx = p1.x - p0.x;
 	float ACx = p2.x - p0.x;
 	float PAx = p0.x - p.x;
 	float ABy = p1.y - p0.y;
@@ -58,31 +60,45 @@ Vec3f baryCentric(Vec2i p0, Vec2i p1, Vec2i p2, Vec2i p, TGAImage& image, TGACol
 	float PAy = p0.y - p.y;
 	float v = (PAx * ABy / ABx - PAy) / (ACy - ACx * ABy / ABx);
 	float u = -PAx / ABx - v * ACx / ABx;
-	return { u,v,1-u-v };
+	return { 1 - u - v,u,v };*/
+	
+	Vec3f s[2];
+	s[0].x = p1.x - p0.x;//ABx
+	s[0].y = p2.x - p0.x;//ACx
+	s[0].z = p0.x - p.x;//PAx
+	s[1].x = p1.y - p0.y;//ABy
+	s[1].y = p2.y - p0.y;//ACy
+	s[1].z = p0.y - p.y;//PAy
+	Vec3f u = cross(s[0], s[1]);
+	if (std::abs(u.z)>1e-3)
+		return Vec3f(1.f - (u.x + u.y) / u.z, u.x / u.z, u.y / u.z);//先转换成(u,v,1) 再返回(1-u-v,u,v)
+	return Vec3f(-1, 1, 1);
 }
 
-
-void filledTrangleBary(Vec2i p0, Vec2i p1, Vec2i p2, TGAImage& image, TGAColor color)
+Vec3f baryCentric(Vec2f p0, Vec2f p1, Vec2f p2, Vec2f p)
 {
-	int xmin = std::min(p0.x, std::min(p1.x, p2.x));
-	int xmax = std::max(p0.x, std::max(p1.x, p2.x));
-	int ymin = std::min(p0.y, std::min(p1.y, p2.y));
-	int ymax = std::max(p0.y, std::max(p1.y, p2.y));
-	for (int x = xmin; x <= xmax; x++)
-	{
-		for (int y = ymin; y <= ymax; y++)
-		{
-			Vec3f BaryCentric = baryCentric(p0, p1, p2, Vec2i(x, y), image, color);
-			if (BaryCentric.x >= 0 && BaryCentric.y >= 0 && BaryCentric.z >= 0)
-			{
-				image.set(x, y, color);
-			}
-		}
+	//Vec3f s[2];
+	//s[0].x = p1.x - p0.x;//ABx
+	//s[0].y = p2.x - p0.x;//ACx
+	//s[0].z = p0.x - p.x;//PAx
+	//s[1].x = p1.y - p0.y;//ABy
+	//s[1].y = p2.y - p0.y;//ACy
+	//s[1].z = p0.y - p.y;//PAy
+	//Vec3f u = cross(s[0], s[1]);
+	//if (std::abs(u.z) > 1e-3)
+	//	return Vec3f(1.f - (u.x + u.y) / u.z, u.x / u.z, u.y / u.z);//先转换成(u,v,1) 再返回(1-u-v,u,v)
+	//return Vec3f(-1, 1, 1);
+	Vec3f s[2];
+	for (int i = 0; i < 2; i++) {
+		s[i].x = p1[i] - p0[i];
+		s[i].y = p2[i] - p0[i];
+		s[i].z = p0[i] - p[i];
 	}
+	Vec3f u = cross(s[0], s[1]);
+	if (std::abs(u.z) > 1e-3)
+		return Vec3f(1.f - (u.x + u.y) / u.z, u.x / u.z, u.y / u.z);
+	return Vec3f(-1, 1, 1);
 }
-
-
-
 
 //TODO
 void filledTrangle_TODO(Vec2i p0, Vec2i p1, Vec2i p2, TGAImage& image, TGAColor color)

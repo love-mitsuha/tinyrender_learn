@@ -1,20 +1,43 @@
-﻿  main.cpp
-D:\tinyrender_learn\start\main.cpp(39,102): warning C4244: “参数”: 从“t”转换到“t”，可能丢失数据
-D:\tinyrender_learn\start\main.cpp(39,102): warning C4244:         with
-D:\tinyrender_learn\start\main.cpp(39,102): warning C4244:         [
-D:\tinyrender_learn\start\main.cpp(39,102): warning C4244:             t=float
-D:\tinyrender_learn\start\main.cpp(39,102): warning C4244:         ]
-D:\tinyrender_learn\start\main.cpp(39,102): warning C4244:         and
-D:\tinyrender_learn\start\main.cpp(39,102): warning C4244:         [
-D:\tinyrender_learn\start\main.cpp(39,102): warning C4244:             t=int
-D:\tinyrender_learn\start\main.cpp(39,102): warning C4244:         ]
-D:\tinyrender_learn\start\main.cpp(39,67): warning C4244: “参数”: 从“t”转换到“t”，可能丢失数据
-D:\tinyrender_learn\start\main.cpp(39,67): warning C4244:         with
-D:\tinyrender_learn\start\main.cpp(39,67): warning C4244:         [
-D:\tinyrender_learn\start\main.cpp(39,67): warning C4244:             t=float
-D:\tinyrender_learn\start\main.cpp(39,67): warning C4244:         ]
-D:\tinyrender_learn\start\main.cpp(39,67): warning C4244:         and
-D:\tinyrender_learn\start\main.cpp(39,67): warning C4244:         [
-D:\tinyrender_learn\start\main.cpp(39,67): warning C4244:             t=int
-D:\tinyrender_learn\start\main.cpp(39,67): warning C4244:         ]
+﻿  render.cpp
+D:\tinyrender_learn\start\render.cpp(20,9): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+D:\tinyrender_learn\start\render.cpp(33,11): warning C4244: “初始化”: 从“const _Ty”转换到“int”，可能丢失数据
+D:\tinyrender_learn\start\render.cpp(33,11): warning C4244:         with
+D:\tinyrender_learn\start\render.cpp(33,11): warning C4244:         [
+D:\tinyrender_learn\start\render.cpp(33,11): warning C4244:             _Ty=float
+D:\tinyrender_learn\start\render.cpp(33,11): warning C4244:         ]
+D:\tinyrender_learn\start\render.cpp(34,11): warning C4244: “初始化”: 从“const _Ty”转换到“int”，可能丢失数据
+D:\tinyrender_learn\start\render.cpp(34,11): warning C4244:         with
+D:\tinyrender_learn\start\render.cpp(34,11): warning C4244:         [
+D:\tinyrender_learn\start\render.cpp(34,11): warning C4244:             _Ty=float
+D:\tinyrender_learn\start\render.cpp(34,11): warning C4244:         ]
+D:\tinyrender_learn\start\render.cpp(35,11): warning C4244: “初始化”: 从“const _Ty”转换到“int”，可能丢失数据
+D:\tinyrender_learn\start\render.cpp(35,11): warning C4244:         with
+D:\tinyrender_learn\start\render.cpp(35,11): warning C4244:         [
+D:\tinyrender_learn\start\render.cpp(35,11): warning C4244:             _Ty=float
+D:\tinyrender_learn\start\render.cpp(35,11): warning C4244:         ]
+D:\tinyrender_learn\start\render.cpp(36,11): warning C4244: “初始化”: 从“const _Ty”转换到“int”，可能丢失数据
+D:\tinyrender_learn\start\render.cpp(36,11): warning C4244:         with
+D:\tinyrender_learn\start\render.cpp(36,11): warning C4244:         [
+D:\tinyrender_learn\start\render.cpp(36,11): warning C4244:             _Ty=float
+D:\tinyrender_learn\start\render.cpp(36,11): warning C4244:         ]
+D:\tinyrender_learn\start\render.cpp(39,13): warning C4244: “=”: 从“int”转换到“T”，可能丢失数据
+D:\tinyrender_learn\start\render.cpp(39,13): warning C4244:         with
+D:\tinyrender_learn\start\render.cpp(39,13): warning C4244:         [
+D:\tinyrender_learn\start\render.cpp(39,13): warning C4244:             T=float
+D:\tinyrender_learn\start\render.cpp(39,13): warning C4244:         ]
+D:\tinyrender_learn\start\render.cpp(41,14): warning C4244: “=”: 从“int”转换到“T”，可能丢失数据
+D:\tinyrender_learn\start\render.cpp(41,14): warning C4244:         with
+D:\tinyrender_learn\start\render.cpp(41,14): warning C4244:         [
+D:\tinyrender_learn\start\render.cpp(41,14): warning C4244:             T=float
+D:\tinyrender_learn\start\render.cpp(41,14): warning C4244:         ]
+D:\tinyrender_learn\start\render.cpp(56,21): warning C4244: “参数”: 从“T”转换到“int”，可能丢失数据
+D:\tinyrender_learn\start\render.cpp(56,21): warning C4244:         with
+D:\tinyrender_learn\start\render.cpp(56,21): warning C4244:         [
+D:\tinyrender_learn\start\render.cpp(56,21): warning C4244:             T=float
+D:\tinyrender_learn\start\render.cpp(56,21): warning C4244:         ]
+D:\tinyrender_learn\start\render.cpp(56,16): warning C4244: “参数”: 从“T”转换到“int”，可能丢失数据
+D:\tinyrender_learn\start\render.cpp(56,16): warning C4244:         with
+D:\tinyrender_learn\start\render.cpp(56,16): warning C4244:         [
+D:\tinyrender_learn\start\render.cpp(56,16): warning C4244:             T=float
+D:\tinyrender_learn\start\render.cpp(56,16): warning C4244:         ]
   start.vcxproj -> D:\tinyrender_learn\start\x64\Debug\start.exe

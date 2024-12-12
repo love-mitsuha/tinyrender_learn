@@ -88,7 +88,7 @@
     <ClCompile>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>D:\tinyrender_learn\TGA;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\tinyrender_learn\start;D:\tinyrender_learn\TGA;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -124,6 +124,7 @@
     <ClCompile Include="..\TGA\tgaimage.cpp" />
     <ClCompile Include="Bresenham.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="render.cpp" />
     <ClCompile Include="triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +132,7 @@
     <ClInclude Include="..\TGA\model.h" />
     <ClInclude Include="..\TGA\tgaimage.h" />
     <ClInclude Include="Bresenham.h" />
+    <ClInclude Include="render.h" />
     <ClInclude Include="triangle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
