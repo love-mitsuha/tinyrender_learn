@@ -7,36 +7,27 @@
       "RelativeMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|solutionrelative:geometry.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|D:\\tinyrender_learn\\TGA\\geometry.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\tinyrenderer-1cce85258d1f1cf75fd10fe4d62ebfdb669f8cf9\\geometry.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\tinyrenderer-1cce85258d1f1cf75fd10fe4d62ebfdb669f8cf9\\geometry.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|D:\\tinyrender_learn\\start\\triangle.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|solutionrelative:triangle.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|D:\\tinyrender_learn\\start\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\tinyrenderer-1cce85258d1f1cf75fd10fe4d62ebfdb669f8cf9\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|D:\\tinyrender_learn\\start\\render.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|solutionrelative:render.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|D:\\tinyrender_learn\\start\\render.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|solutionrelative:render.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|D:\\tinyrender_learn\\TGA\\geometry.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|D:\\tinyrender_learn\\start\\triangle.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|solutionrelative:triangle.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|D:\\tinyrender_learn\\start\\triangle.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|solutionrelative:triangle.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|D:\\tinyrender_learn\\start\\render.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|solutionrelative:render.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|D:\\tinyrender_learn\\start\\render.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|solutionrelative:render.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,16 +41,17 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 1,
               "Title": "triangle.cpp",
               "DocumentMoniker": "D:\\tinyrender_learn\\start\\triangle.cpp",
               "RelativeDocumentMoniker": "triangle.cpp",
               "ToolTip": "D:\\tinyrender_learn\\start\\triangle.cpp",
               "RelativeToolTip": "triangle.cpp",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAAE0AAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAADwv00AAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-12-09T02:35:07.041Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -69,27 +61,27 @@
               "RelativeDocumentMoniker": "geometry.cpp",
               "ToolTip": "D:\\tinyrender_learn\\start\\geometry.cpp",
               "RelativeToolTip": "geometry.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAB0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-12-19T13:01:40.794Z",
+              "WhenOpened": "2024-12-19T14:05:48.233Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "geometry.h",
               "DocumentMoniker": "D:\\tinyrender_learn\\TGA\\geometry.h",
               "RelativeDocumentMoniker": "..\\TGA\\geometry.h",
               "ToolTip": "D:\\tinyrender_learn\\TGA\\geometry.h",
               "RelativeToolTip": "..\\TGA\\geometry.h",
-              "ViewState": "AgIAANUAAAAAAAAAAAAAAOEAAAATAAAAAAAAAA==",
+              "ViewState": "AgIAAKUAAAAAAAAAAAAAALMAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-12-19T12:35:05.95Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 4,
               "Title": "triangle.h",
               "DocumentMoniker": "D:\\tinyrender_learn\\start\\triangle.h",
               "RelativeDocumentMoniker": "triangle.h",
@@ -97,19 +89,21 @@
               "RelativeToolTip": "triangle.h",
               "ViewState": "AgIAAAAAAAAAAAAAAADwvwoAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-12-12T00:31:39.442Z"
+              "WhenOpened": "2024-12-12T00:31:39.442Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "render.h",
               "DocumentMoniker": "D:\\tinyrender_learn\\start\\render.h",
               "RelativeDocumentMoniker": "render.h",
               "ToolTip": "D:\\tinyrender_learn\\start\\render.h",
               "RelativeToolTip": "render.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwcAAAB8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-12-11T05:35:06.269Z"
+              "WhenOpened": "2024-12-11T05:35:06.269Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -119,80 +113,23 @@
               "RelativeDocumentMoniker": "render.cpp",
               "ToolTip": "D:\\tinyrender_learn\\start\\render.cpp",
               "RelativeToolTip": "render.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAB9AAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACcAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-12-10T06:02:55.074Z"
+              "WhenOpened": "2024-12-10T06:02:55.074Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "main.cpp",
               "DocumentMoniker": "D:\\tinyrender_learn\\start\\main.cpp",
               "RelativeDocumentMoniker": "main.cpp",
               "ToolTip": "D:\\tinyrender_learn\\start\\main.cpp",
               "RelativeToolTip": "main.cpp",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAAwBkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAAAFoAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-12-07T07:51:46.085Z"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "f3e021e3-2184-47eb-b9d9-d701d1d47d31",
-        "Display": 0,
-        "X": 146,
-        "Y": 160,
-        "Width": 1339,
-        "Height": 647,
-        "WindowState": 2
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "geometry.h",
-              "DocumentMoniker": "D:\\tinyrenderer-1cce85258d1f1cf75fd10fe4d62ebfdb669f8cf9\\geometry.h",
-              "RelativeDocumentMoniker": "..\\..\\tinyrenderer-1cce85258d1f1cf75fd10fe4d62ebfdb669f8cf9\\geometry.h",
-              "ToolTip": "D:\\tinyrenderer-1cce85258d1f1cf75fd10fe4d62ebfdb669f8cf9\\geometry.h",
-              "RelativeToolTip": "..\\..\\tinyrenderer-1cce85258d1f1cf75fd10fe4d62ebfdb669f8cf9\\geometry.h",
-              "ViewState": "AgIAADMAAAAAAAAAAAAAAEgAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-12-19T13:00:03.568Z",
+              "WhenOpened": "2024-12-07T07:51:46.085Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "geometry.cpp",
-              "DocumentMoniker": "D:\\tinyrenderer-1cce85258d1f1cf75fd10fe4d62ebfdb669f8cf9\\geometry.cpp",
-              "RelativeDocumentMoniker": "..\\..\\tinyrenderer-1cce85258d1f1cf75fd10fe4d62ebfdb669f8cf9\\geometry.cpp",
-              "ToolTip": "D:\\tinyrenderer-1cce85258d1f1cf75fd10fe4d62ebfdb669f8cf9\\geometry.cpp",
-              "RelativeToolTip": "..\\..\\tinyrenderer-1cce85258d1f1cf75fd10fe4d62ebfdb669f8cf9\\geometry.cpp",
-              "ViewState": "AgIAADkAAAAAAAAAAAAAAD0AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-12-19T12:31:41.302Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "main.cpp",
-              "DocumentMoniker": "D:\\tinyrenderer-1cce85258d1f1cf75fd10fe4d62ebfdb669f8cf9\\main.cpp",
-              "RelativeDocumentMoniker": "..\\..\\tinyrenderer-1cce85258d1f1cf75fd10fe4d62ebfdb669f8cf9\\main.cpp",
-              "ToolTip": "D:\\tinyrenderer-1cce85258d1f1cf75fd10fe4d62ebfdb669f8cf9\\main.cpp",
-              "RelativeToolTip": "..\\..\\tinyrenderer-1cce85258d1f1cf75fd10fe4d62ebfdb669f8cf9\\main.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-12-19T12:31:28.049Z"
             }
           ]
         }

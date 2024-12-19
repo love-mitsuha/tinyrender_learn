@@ -1,43 +1,7 @@
-﻿  geometry.cpp
-  main.cpp
-D:\tinyrender_learn\start\geometry.cpp(7,29): error C2988: 不可识别的模板声明/定义
-D:\tinyrender_learn\start\geometry.cpp(7,29): error C2143: 语法错误: 缺少“;”(在“<”的前面)
-D:\tinyrender_learn\start\geometry.cpp(7,29): error C2059: 语法错误:“<”
-D:\tinyrender_learn\start\geometry.cpp(7,36): error C2039: "Vec3": 不是 "`global namespace'" 的成员
-D:\tinyrender_learn\start\geometry.cpp(7,73): error C2065: “v”: 未声明的标识符
-D:\tinyrender_learn\start\geometry.cpp(7,67): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
-D:\tinyrender_learn\start\geometry.cpp(7,89): error C2065: “v”: 未声明的标识符
-D:\tinyrender_learn\start\geometry.cpp(7,83): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
-D:\tinyrender_learn\start\geometry.cpp(7,105): error C2065: “v”: 未声明的标识符
-D:\tinyrender_learn\start\geometry.cpp(7,99): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
-D:\tinyrender_learn\start\geometry.cpp(7,114): error C2988: 不可识别的模板声明/定义
-D:\tinyrender_learn\start\geometry.cpp(7,114): error C2059: 语法错误:“{”
-D:\tinyrender_learn\start\geometry.cpp(7,114): error C2143: 语法错误: 缺少“;”(在“{”的前面)
-D:\tinyrender_learn\start\geometry.cpp(7,114): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
-D:\tinyrender_learn\start\geometry.cpp(10,29): error C2988: 不可识别的模板声明/定义
-D:\tinyrender_learn\start\geometry.cpp(10,29): error C2143: 语法错误: 缺少“;”(在“<”的前面)
-D:\tinyrender_learn\start\geometry.cpp(10,29): error C2059: 语法错误:“<”
-D:\tinyrender_learn\start\geometry.cpp(10,38): error C2039: "Vec3": 不是 "`global namespace'" 的成员
-D:\tinyrender_learn\start\geometry.cpp(10,69): error C2065: “v”: 未声明的标识符
-D:\tinyrender_learn\start\geometry.cpp(10,67): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
-D:\tinyrender_learn\start\geometry.cpp(10,67): error C2374: “x”: 重定义；多次初始化
-      D:\tinyrender_learn\start\geometry.cpp(7,67):
-      参见“x”的声明
-  
-D:\tinyrender_learn\start\geometry.cpp(10,77): error C2065: “v”: 未声明的标识符
-D:\tinyrender_learn\start\geometry.cpp(10,75): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
-D:\tinyrender_learn\start\geometry.cpp(10,75): error C2374: “y”: 重定义；多次初始化
-      D:\tinyrender_learn\start\geometry.cpp(7,83):
-      参见“y”的声明
-  
-D:\tinyrender_learn\start\geometry.cpp(10,85): error C2065: “v”: 未声明的标识符
-D:\tinyrender_learn\start\geometry.cpp(10,83): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
-D:\tinyrender_learn\start\geometry.cpp(10,83): error C2374: “z”: 重定义；多次初始化
-      D:\tinyrender_learn\start\geometry.cpp(7,99):
-      参见“z”的声明
-  
-D:\tinyrender_learn\start\geometry.cpp(10,90): error C2988: 不可识别的模板声明/定义
-D:\tinyrender_learn\start\geometry.cpp(10,90): error C2059: 语法错误:“{”
-D:\tinyrender_learn\start\geometry.cpp(10,90): error C2143: 语法错误: 缺少“;”(在“{”的前面)
-D:\tinyrender_learn\start\geometry.cpp(10,90): error C2447: “{”: 缺少函数标题(是否是老式的形式表?)
-  正在生成代码...
+﻿  main.cpp
+D:\tinyrender_learn\start\main.cpp(80,81): warning C4244: “参数”: 从“T”转换到“int”，可能丢失数据
+D:\tinyrender_learn\start\main.cpp(80,81): warning C4244:         with
+D:\tinyrender_learn\start\main.cpp(80,81): warning C4244:         [
+D:\tinyrender_learn\start\main.cpp(80,81): warning C4244:             T=float
+D:\tinyrender_learn\start\main.cpp(80,81): warning C4244:         ]
+  start.vcxproj -> D:\tinyrender_learn\start\x64\Debug\start.exe

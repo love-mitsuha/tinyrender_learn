@@ -16,6 +16,10 @@ const TGAColor red = TGAColor(127, 0, 0, 255);
 const TGAColor green = TGAColor(0, 255, 0, 255);
 const TGAColor blue = TGAColor(0, 0, 255, 255);
 
+const int view_x = 100;
+const int view_y = 100;
+const int view_width = 600;
+const int view_height = 600;
 const int width = 800;
 const int height = 800;
 const int texture_width = 1024;
@@ -71,7 +75,9 @@ int main(int argc, char** argv) {
     TGAImage texture(texture_width,texture_height,24);
     texture.read_tga_file(diablo3_pose"diablo3_pose_diffuse.tga");
 
-    
+    Matrix4f projection = Matrix4f::identity(4);
+    projection[3][2] = -1.f / camera.z;
+    Matrix4f viewport = NDC2view(view_x, view_y, view_width, view_height, camera.z);
     for (int i = 0; i < model.nfaces(); i++) {
         std::vector<int> face = model.face(i);
         std::vector<int> face_texture = model.face_texture(i);
@@ -82,7 +88,7 @@ int main(int argc, char** argv) {
         for (int j = 0; j < 3; j++)
         {
             world_coords[j] = model.vert(face[j]);
-            screen_coords[j] = { (world_coords[j].x + 1) * canvas.get_width() / 2 + (float).5, (world_coords[j].y + 1) * canvas.get_height() / 2 + (float).5, world_coords[j].z };
+            screen_coords[j] = homo2vec(viewport * projection * vec2homo(world_coords[j]));
             texture_coords[j] = model.get_texture(face_texture[j]);
         }
         Vec3f face_normal = cross((world_coords[2] - world_coords[0]), (world_coords[1] - world_coords[0])).normalize();//µãÄæÊ±ÕëÅÅÁÐ
@@ -94,7 +100,7 @@ int main(int argc, char** argv) {
     }
     
     canvas.flip_vertically();
-    canvas.write_tga_file(image "diablo3_pose_texture.tga");
+    canvas.write_tga_file(image "diablo3_pose_texture_perspective.tga");
 
     
 

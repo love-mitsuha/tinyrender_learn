@@ -138,7 +138,7 @@ public:
         for (size_t i = DimRows; i--; rows[i][idx] = v[i]);
     }
 
-    static mat<DimRows, DimCols, T> identity() {
+    static mat<DimRows, DimCols, T> identity(int dimensions) {
         mat<DimRows, DimCols, T> ret;
         for (size_t i = DimRows; i--; )
             for (size_t j = DimCols; j--; ret[i][j] = (i == j));
@@ -216,28 +216,16 @@ typedef vec<2, int>   Vec2i;
 typedef vec<3, float> Vec3f;
 typedef vec<3, int>   Vec3i;
 typedef vec<4, float> Vec4f;
+typedef mat<4, 4, float> Matrix4f;
+typedef mat<4, 4, int> Matrix4i;
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-const int DEFAULT_ALLOC = 4;
+Vec4f vec2homo(Vec3f v);
 
-class Matrix {
-    std::vector<std::vector<float> > m;
-    int rows, cols;
-public:
-    Matrix(int r = DEFAULT_ALLOC, int c = DEFAULT_ALLOC);
-    inline int nrows();
-    inline int ncols();
+Matrix4f NDC2view(int x, int y, int w, int h, int depth);
 
-    static Matrix identity(int dimensions);
-    std::vector<float>& operator[](const int i);
-    Matrix operator*(const Matrix& a);
-    Matrix transpose();
-    Matrix inverse();
-
-    friend std::ostream& operator<<(std::ostream& s, Matrix& m);
-};
-
+Vec3f homo2vec(Vec4f m);
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 #endif //__GEOMETRY_H__
