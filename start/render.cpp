@@ -42,6 +42,7 @@ void rasterize(Vec3f screen_coords[],  Vec2f texture_coords[], TGAImage& image,T
 		{
 			Vec3f BaryCentric = baryCentric(screen_coords[0], screen_coords[1], screen_coords[2], P);
 			int idx = static_cast<int>(P.x + P.y * image.get_width()); //否则在这一行会因为小数部分进位而导致漏绘
+			//深度插值和纹理插值
 			P.z = screen_coords[0].z * BaryCentric.x + screen_coords[1].z * BaryCentric.y + screen_coords[2].z * BaryCentric.z;
 			P_texture = texture_coords[0] * BaryCentric.x + texture_coords[1] * BaryCentric.y + texture_coords[2] * BaryCentric.z;
 			int texture_x = static_cast<int>(P_texture.x * texture.get_width());

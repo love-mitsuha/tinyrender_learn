@@ -33,6 +33,9 @@
     <ClCompile Include="render.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="geometry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\TGA\tgaimage.h">

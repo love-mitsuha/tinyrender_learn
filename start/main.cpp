@@ -15,10 +15,15 @@ const TGAColor white = TGAColor(255, 255, 255, 255);
 const TGAColor red = TGAColor(127, 0, 0, 255);
 const TGAColor green = TGAColor(0, 255, 0, 255);
 const TGAColor blue = TGAColor(0, 0, 255, 255);
+
 const int width = 800;
 const int height = 800;
 const int texture_width = 1024;
 const int texture_height = 1024;
+float *zbuffer = NULL;
+Vec3f light_dir = Vec3f(0, 0, -1);
+Vec3f camera = Vec3f(0, 0, 3);
+
 
 int main(int argc, char** argv) {
 
@@ -56,17 +61,17 @@ int main(int argc, char** argv) {
 
     
     
-    const char* filename = african_head"african_head.obj";
+    const char* filename = diablo3_pose"diablo3_pose.obj";
     Model model = Model(filename);
     TGAImage canvas(width, height, TGAImage::RGB);
-    static float zbuffer[width * height];
+    zbuffer = new float[width * height];
     for (int i = 0; i < width * height; i++) {
         zbuffer[i] = std::numeric_limits<float>::lowest();
     }
     TGAImage texture(texture_width,texture_height,24);
-    texture.read_tga_file(african_head"african_head_diffuse.tga");
+    texture.read_tga_file(diablo3_pose"diablo3_pose_diffuse.tga");
 
-    Vec3f light_dir = Vec3f(0, 0, -1);
+    
     for (int i = 0; i < model.nfaces(); i++) {
         std::vector<int> face = model.face(i);
         std::vector<int> face_texture = model.face_texture(i);
@@ -89,7 +94,7 @@ int main(int argc, char** argv) {
     }
     
     canvas.flip_vertically();
-    canvas.write_tga_file(image "african_head_texture.tga");
+    canvas.write_tga_file(image "diablo3_pose_texture.tga");
 
     
 

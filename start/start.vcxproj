@@ -123,6 +123,7 @@
     <ClCompile Include="..\TGA\model.cpp" />
     <ClCompile Include="..\TGA\tgaimage.cpp" />
     <ClCompile Include="Bresenham.cpp" />
+    <ClCompile Include="geometry.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="render.cpp" />
     <ClCompile Include="triangle.cpp" />
