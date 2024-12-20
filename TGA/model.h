@@ -9,7 +9,9 @@ private:
 	std::vector<Vec3f> verts_;
 	std::vector<std::vector<int> > faces_;
 	std::vector<Vec2f> texcoords_;
-	std::vector<std::vector<int>>faces_texcoords;
+	std::vector<Vec3f> normals_;
+	std::vector<std::vector<int>> faces_texcoords;
+	std::vector<std::vector<int>> faces_normals;
 public:
 	Model(const char *filename);
 	~Model();
@@ -19,6 +21,8 @@ public:
 	std::vector<int> face(int idx);
 	std::vector<int> face_texture(int idx);
 	Vec2f get_texture(int i);
+	Vec3f Model::get_normals(int i);
+	std::vector<int> Model::face_normals(int idx);
 };
 
 #endif //__MODEL_H__

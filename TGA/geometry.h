@@ -218,14 +218,17 @@ typedef vec<3, int>   Vec3i;
 typedef vec<4, float> Vec4f;
 typedef mat<4, 4, float> Matrix4f;
 typedef mat<4, 4, int> Matrix4i;
+typedef mat<4, 1, float> col4f;
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-Vec4f vec2homo(Vec3f v);
+col4f vec2homo(Vec3f v);
 
 Matrix4f NDC2view(int x, int y, int w, int h, int depth);
 
-Vec3f homo2vec(Vec4f m);
+Vec3f homo2vec(col4f m);
+
+Matrix4f View(Vec3f camera, Vec3f center, Vec3f up);
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 #endif //__GEOMETRY_H__

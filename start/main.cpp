@@ -25,9 +25,10 @@ const int height = 800;
 const int texture_width = 1024;
 const int texture_height = 1024;
 float *zbuffer = NULL;
-Vec3f light_dir = Vec3f(0, 0, -1);
-Vec3f camera = Vec3f(0, 0, 3);
-
+Vec3f light_dir = Vec3f(1, -1, 1).normalize();
+Vec3f camera = Vec3f(0, 0, 10000);
+Vec3f center = Vec3f(0, 0, 0);
+Vec3f up = Vec3f(0, 1, 0);
 
 int main(int argc, char** argv) {
 
@@ -75,32 +76,33 @@ int main(int argc, char** argv) {
     TGAImage texture(texture_width,texture_height,24);
     texture.read_tga_file(diablo3_pose"diablo3_pose_diffuse.tga");
 
+    Matrix4f modelM = Matrix4f::identity(4);//模型坐标转换世界坐标 模型初始就与世界坐标重合
+    Matrix4f view = View(camera, center, up);//世界坐标转换相机坐标 相机中心刚好为center(0,0,0)与世界原点重合
     Matrix4f projection = Matrix4f::identity(4);
-    projection[3][2] = -1.f / camera.z;
+    projection[3][2] = -1.f / (camera - center).norm();
     Matrix4f viewport = NDC2view(view_x, view_y, view_width, view_height, camera.z);
+
     for (int i = 0; i < model.nfaces(); i++) {
         std::vector<int> face = model.face(i);
         std::vector<int> face_texture = model.face_texture(i);
+        std::vector<int> face_normal = model.face_normals(i);
         Vec3f world_coords[3];
         Vec3f screen_coords[3];
+        Vec3f normal_coords[3];
         Vec2f texture_coords[3];
         TGAColor texture_value[3];
         for (int j = 0; j < 3; j++)
         {
             world_coords[j] = model.vert(face[j]);
-            screen_coords[j] = homo2vec(viewport * projection * vec2homo(world_coords[j]));
+            screen_coords[j] = homo2vec(viewport * projection * view * modelM * vec2homo(world_coords[j]));
             texture_coords[j] = model.get_texture(face_texture[j]);
+            normal_coords[j] = model.get_normals(face_normal[j]);
         }
-        Vec3f face_normal = cross((world_coords[2] - world_coords[0]), (world_coords[1] - world_coords[0])).normalize();//点逆时针排列
-        float alpha = face_normal * light_dir;
-        if (alpha > 0)
-        {
-            rasterize(screen_coords, texture_coords, canvas, texture, alpha, zbuffer);
-        }
+        rasterize(screen_coords, texture_coords, normal_coords, light_dir, canvas, texture, zbuffer);
     }
     
     canvas.flip_vertically();
-    canvas.write_tga_file(image "diablo3_pose_texture_perspective.tga");
+    canvas.write_tga_file(image "diablo3_pose_texture_perspective_normal.tga");
 
     
 
