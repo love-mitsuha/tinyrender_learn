@@ -39,7 +39,6 @@ Model::Model(const char* filename) : verts_(), faces_(), texcoords_(){
             for (int i = 0; i < 3; i++)
             {
                 iss >> vn[i];
-                std::cout << vn[i] << std::endl;
             }
             normals_.push_back(vn);
         }

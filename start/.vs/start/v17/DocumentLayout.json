@@ -3,30 +3,27 @@
   "WorkspaceRootPath": "D:\\tinyrender_learn\\start\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|D:\\tinyrender_learn\\start\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|D:\\tinyrender_learn\\start\\render.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|solutionrelative:render.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|D:\\tinyrender_learn\\start\\geometry.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|solutionrelative:geometry.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|D:\\tinyrender_learn\\TGA\\model.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|D:\\tinyrender_learn\\TGA\\geometry.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|D:\\tinyrender_learn\\start\\triangle.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|solutionrelative:triangle.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|D:\\tinyrender_learn\\start\\render.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|solutionrelative:render.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|D:\\tinyrender_learn\\start\\triangle.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|solutionrelative:triangle.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|D:\\tinyrender_learn\\start\\render.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|solutionrelative:render.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|D:\\tinyrender_learn\\start\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|D:\\tinyrender_learn\\TGA\\geometry.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|D:\\tinyrender_learn\\start\\geometry.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F72997E6-4CFD-4168-BD26-E274C30DD79A}|start.vcxproj|solutionrelative:geometry.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -36,30 +33,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "model.cpp",
-              "DocumentMoniker": "D:\\tinyrender_learn\\TGA\\model.cpp",
-              "RelativeDocumentMoniker": "..\\TGA\\model.cpp",
-              "ToolTip": "D:\\tinyrender_learn\\TGA\\model.cpp",
-              "RelativeToolTip": "..\\TGA\\model.cpp",
-              "ViewState": "AgIAAFgAAAAAAAAAAAAewD4AAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-12-20T07:53:18.601Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "geometry.cpp",
               "DocumentMoniker": "D:\\tinyrender_learn\\start\\geometry.cpp",
               "RelativeDocumentMoniker": "geometry.cpp",
               "ToolTip": "D:\\tinyrender_learn\\start\\geometry.cpp",
               "RelativeToolTip": "geometry.cpp",
-              "ViewState": "AgIAABwAAAAAAAAAAAAhwCoAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAhwBIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-12-19T14:05:48.233Z",
               "EditorCaption": ""
@@ -72,14 +56,14 @@
               "RelativeDocumentMoniker": "..\\TGA\\geometry.h",
               "ToolTip": "D:\\tinyrender_learn\\TGA\\geometry.h",
               "RelativeToolTip": "..\\TGA\\geometry.h",
-              "ViewState": "AgIAANUAAAAAAAAAAAAewOQAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-12-19T12:35:05.95Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "triangle.h",
               "DocumentMoniker": "D:\\tinyrender_learn\\start\\triangle.h",
               "RelativeDocumentMoniker": "triangle.h",
@@ -92,39 +76,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "render.h",
               "DocumentMoniker": "D:\\tinyrender_learn\\start\\render.h",
               "RelativeDocumentMoniker": "render.h",
               "ToolTip": "D:\\tinyrender_learn\\start\\render.h",
               "RelativeToolTip": "render.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAABiAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-12-11T05:35:06.269Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "render.cpp",
               "DocumentMoniker": "D:\\tinyrender_learn\\start\\render.cpp",
               "RelativeDocumentMoniker": "render.cpp",
               "ToolTip": "D:\\tinyrender_learn\\start\\render.cpp",
               "RelativeToolTip": "render.cpp",
-              "ViewState": "AgIAACwAAAAAAAAAAAAewDoAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAACUAAAAAAAAAAAAAACYAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-12-10T06:02:55.074Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "main.cpp",
               "DocumentMoniker": "D:\\tinyrender_learn\\start\\main.cpp",
               "RelativeDocumentMoniker": "main.cpp",
               "ToolTip": "D:\\tinyrender_learn\\start\\main.cpp",
               "RelativeToolTip": "main.cpp",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAAAF8AAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAFkAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-12-07T07:51:46.085Z",
               "EditorCaption": ""

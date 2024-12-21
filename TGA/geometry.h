@@ -226,7 +226,7 @@ col4f vec2homo(Vec3f v);
 
 Matrix4f NDC2view(int x, int y, int w, int h, int depth);
 
-Vec3f homo2vec(col4f m);
+Vec3f perspective_homo2vec(col4f m);
 
 Matrix4f View(Vec3f camera, Vec3f center, Vec3f up);
 /////////////////////////////////////////////////////////////////////////////////////////////

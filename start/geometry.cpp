@@ -29,7 +29,7 @@ Matrix4f NDC2view(int x, int y, int w, int h, int depth)
 	return m;
 }
 
-Vec3f homo2vec(col4f m)
+Vec3f perspective_homo2vec(col4f m)
 {
 	Vec3f v;
 	v.x = m[0][0] / m[3][0];

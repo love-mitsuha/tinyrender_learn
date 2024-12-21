@@ -5,6 +5,8 @@
 #include "geometry.h"
 #include "triangle.h"
 #include "render.h"
+#include <math.h>
+#include <Windows.h>
 #define image "D:\\tinyrender_learn\\image\\"
 #define african_head "D:\\tinyrender_learn\\resource\\african_head\\"
 #define boggie "D:\\tinyrender_learn\\resource\\boggie\\"
@@ -16,17 +18,17 @@ const TGAColor red = TGAColor(127, 0, 0, 255);
 const TGAColor green = TGAColor(0, 255, 0, 255);
 const TGAColor blue = TGAColor(0, 0, 255, 255);
 
-const int view_x = 100;
-const int view_y = 100;
-const int view_width = 600;
-const int view_height = 600;
-const int width = 800;
-const int height = 800;
+const int view_x = 200;
+const int view_y = 200;
+const int view_width = 1200;
+const int view_height = 1200;
+const int width = 1600;
+const int height = 1600;
 const int texture_width = 1024;
 const int texture_height = 1024;
 float *zbuffer = NULL;
-Vec3f light_dir = Vec3f(1, -1, 1).normalize();
-Vec3f camera = Vec3f(0, 0, 10000);
+Vec3f light_dir = Vec3f(0, 0, -1).normalize();
+Vec3f camera = Vec3f(-1, 0, 1);
 Vec3f center = Vec3f(0, 0, 0);
 Vec3f up = Vec3f(0, 1, 0);
 
@@ -66,7 +68,7 @@ int main(int argc, char** argv) {
 
     
     
-    const char* filename = diablo3_pose"diablo3_pose.obj";
+    const char* filename = african_head"african_head.obj";
     Model model = Model(filename);
     TGAImage canvas(width, height, TGAImage::RGB);
     zbuffer = new float[width * height];
@@ -74,37 +76,35 @@ int main(int argc, char** argv) {
         zbuffer[i] = std::numeric_limits<float>::lowest();
     }
     TGAImage texture(texture_width,texture_height,24);
-    texture.read_tga_file(diablo3_pose"diablo3_pose_diffuse.tga");
+    texture.read_tga_file(african_head"african_head_diffuse.tga");
 
-    Matrix4f modelM = Matrix4f::identity(4);//模型坐标转换世界坐标 模型初始就与世界坐标重合
-    Matrix4f view = View(camera, center, up);//世界坐标转换相机坐标 相机中心刚好为center(0,0,0)与世界原点重合
-    Matrix4f projection = Matrix4f::identity(4);
+    Matrix4f modelM = Matrix4f::identity(4);//模型坐标转换世界坐标 模型初始就与世界坐标重合故为单位阵
+    Matrix4f view = View(camera, center, up);//世界坐标转换相机坐标
+    Matrix4f projection = Matrix4f::identity(4);//投影矩阵 没有设置远近平面
     projection[3][2] = -1.f / (camera - center).norm();
-    Matrix4f viewport = NDC2view(view_x, view_y, view_width, view_height, camera.z);
-
+    Matrix4f viewport = NDC2view(view_x, view_y, view_width, view_height, (center - camera).norm());
+    Matrix4f MVP = projection * view * modelM;
     for (int i = 0; i < model.nfaces(); i++) {
-        std::vector<int> face = model.face(i);
-        std::vector<int> face_texture = model.face_texture(i);
-        std::vector<int> face_normal = model.face_normals(i);
-        Vec3f world_coords[3];
+        std::vector<int> face = model.face(i);//面顶点坐标索引
+        std::vector<int> face_texture = model.face_texture(i);//面的顶点纹理索引
+        std::vector<int> face_normal = model.face_normals(i);//面的顶点法线索引
+        Vec3f obj_coords[3];
         Vec3f screen_coords[3];
         Vec3f normal_coords[3];
         Vec2f texture_coords[3];
         TGAColor texture_value[3];
         for (int j = 0; j < 3; j++)
         {
-            world_coords[j] = model.vert(face[j]);
-            screen_coords[j] = homo2vec(viewport * projection * view * modelM * vec2homo(world_coords[j]));
+            obj_coords[j] = model.vert(face[j]);
+            screen_coords[j] = perspective_homo2vec(viewport * MVP * vec2homo(obj_coords[j]));
             texture_coords[j] = model.get_texture(face_texture[j]);
             normal_coords[j] = model.get_normals(face_normal[j]);
         }
-        rasterize(screen_coords, texture_coords, normal_coords, light_dir, canvas, texture, zbuffer);
+        rasterize(screen_coords, texture_coords, normal_coords, light_dir, viewport, canvas, texture, zbuffer);
     }
     
     canvas.flip_vertically();
-    canvas.write_tga_file(image "diablo3_pose_texture_perspective_normal.tga");
-
-    
+    canvas.write_tga_file(image "african_head_texture_perspective_normal.tga");
 
 
 
