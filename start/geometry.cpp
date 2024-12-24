@@ -55,4 +55,11 @@ Matrix4f View(Vec3f camera, Vec3f center, Vec3f up)
 	return m * tr;
 }
 
-
+Vec3f homo2vec(col4f m)
+{
+	Vec3f v;
+	v.x = m[0][0];
+	v.y = m[1][0];
+	v.z = m[2][0];
+	return v;
+}

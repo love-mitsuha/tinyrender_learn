@@ -1,6 +1,8 @@
 #include "geometry.h"
 #include "tgaimage.h"
 #include "triangle.h"
+#include "render.h"
+#include "shader.h"
 
 
 void rasterize2D(Vec2i p1, Vec2i p2, TGAImage& image, TGAColor color,float alpha, int ybuffer[])
@@ -29,6 +31,7 @@ void rasterize2D(Vec2i p1, Vec2i p2, TGAImage& image, TGAColor color,float alpha
 
 void rasterize(Vec3f screen_coords[], Vec2f texture_coords[], Vec3f normal_coords[], Vec3f light_dir, Matrix4f viewport, TGAImage& image, TGAImage texture, float* zbuffer)
 {
+
 	//bbox必须使用int
 	int xmin = std::floor(std::min(screen_coords[0].x, std::min(screen_coords[1].x, screen_coords[2].x)));
 	int xmax = std::ceil(std::max(screen_coords[0].x, std::max(screen_coords[1].x, screen_coords[2].x)));
@@ -51,8 +54,7 @@ void rasterize(Vec3f screen_coords[], Vec2f texture_coords[], Vec3f normal_coord
 			float alpha = -(P_normal * light_dir) > 0 ? -(P_normal * light_dir) : 0;//法线向外
 			int texture_x = static_cast<int>(P_texture.x * texture.get_width());
 			int texture_y = static_cast<int>((1. - P_texture.y) * texture.get_height());//纹理坐标如果从左上角开始就要翻转
-			TGAColor color = texture.get(texture_x, texture_y);
-			color = TGAColor((int)(color.r * alpha), (int)(color.g * alpha), (int)(color.b * alpha), (int)(color.a * alpha));
+			TGAColor color = texture.get(texture_x, texture_y) * alpha;
 			if (BaryCentric.x < 0 || BaryCentric.y < 0 || BaryCentric.z < 0)
 				continue;
 			if (zbuffer[idx] < P.z)
@@ -65,5 +67,70 @@ void rasterize(Vec3f screen_coords[], Vec2f texture_coords[], Vec3f normal_coord
 
 
 }
+
+void rasterize(PhoneShader shader, TGAImage& image, float* zbuffer)
+{
+	Vec3f screen_coords[3];
+	for (int i = 0; i < 3; i++)
+	{
+		screen_coords[i] = shader.vertex(i);
+	}
+	int xmin = std::floor(std::min(screen_coords[0].x, std::min(screen_coords[1].x, screen_coords[2].x)));
+	int xmax = std::ceil(std::max(screen_coords[0].x, std::max(screen_coords[1].x, screen_coords[2].x)));
+	int ymin = std::floor(std::min(screen_coords[0].y, std::min(screen_coords[1].y, screen_coords[2].y)));
+	int ymax = std::ceil(std::max(screen_coords[0].y, std::max(screen_coords[1].y, screen_coords[2].y)));
+	Vec3f P;
+	for (P.x = xmin; P.x <= xmax; P.x++)
+	{
+		for (P.y = ymin; P.y <= ymax; P.y++)
+		{
+			Vec3f BaryCenter = baryCentric(screen_coords[0], screen_coords[1], screen_coords[2], P);
+			int idx = static_cast<int>(P.x + P.y * image.get_width()); //否则在这一行会因为小数部分进位而导致漏绘
+			//深度插值
+			P.z = screen_coords[0].z * BaryCenter.x + screen_coords[1].z * BaryCenter.y + screen_coords[2].z * BaryCenter.z;
+			if (BaryCenter.x < 0 || BaryCenter.y < 0 || BaryCenter.z < 0)
+				continue;
+			if (zbuffer[idx] < P.z)
+			{
+				zbuffer[idx] = P.z;
+				image.set(P.x, P.y, shader.fragment_load_nm(BaryCenter));
+			}
+		}
+	}
+
+}
+
+void rasterize(GouraudShader shader, TGAImage& image, float* zbuffer)
+{
+	Vec3f screen_coords[3];
+	for (int i = 0; i < 3; i++)
+	{
+		screen_coords[i] = shader.vertex(i);
+	}
+	int xmin = std::floor(std::min(screen_coords[0].x, std::min(screen_coords[1].x, screen_coords[2].x)));
+	int xmax = std::ceil(std::max(screen_coords[0].x, std::max(screen_coords[1].x, screen_coords[2].x)));
+	int ymin = std::floor(std::min(screen_coords[0].y, std::min(screen_coords[1].y, screen_coords[2].y)));
+	int ymax = std::ceil(std::max(screen_coords[0].y, std::max(screen_coords[1].y, screen_coords[2].y)));
+	Vec3f P;
+	for (P.x = xmin; P.x <= xmax; P.x++)
+	{
+		for (P.y = ymin; P.y <= ymax; P.y++)
+		{
+			Vec3f BaryCenter = baryCentric(screen_coords[0], screen_coords[1], screen_coords[2], P);
+			int idx = static_cast<int>(P.x + P.y * image.get_width()); //否则在这一行会因为小数部分进位而导致漏绘
+			//深度插值
+			P.z = screen_coords[0].z * BaryCenter.x + screen_coords[1].z * BaryCenter.y + screen_coords[2].z * BaryCenter.z;
+			if (BaryCenter.x < 0 || BaryCenter.y < 0 || BaryCenter.z < 0)
+				continue;
+			if (zbuffer[idx] < P.z)
+			{
+				zbuffer[idx] = P.z;
+				image.set(P.x, P.y, shader.fragment(BaryCenter));
+			}
+		}
+	}
+
+}
+
 
 

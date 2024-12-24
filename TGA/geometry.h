@@ -224,6 +224,8 @@ typedef mat<4, 1, float> col4f;
 
 col4f vec2homo(Vec3f v);
 
+Vec3f homo2vec(col4f v);
+
 Matrix4f NDC2view(int x, int y, int w, int h, int depth);
 
 Vec3f perspective_homo2vec(col4f m);

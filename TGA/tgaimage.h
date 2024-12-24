@@ -50,6 +50,10 @@ struct TGAColor {
 		}
 	}
 
+	TGAColor(const unsigned char* p) : bytespp(1) {
+		val = *p;
+	}
+
 	TGAColor & operator =(const TGAColor &c) {
 		if (this != &c) {
 			bytespp = c.bytespp;
@@ -57,6 +61,25 @@ struct TGAColor {
 		}
 		return *this;
 	}
+
+	TGAColor operator *(float c) {
+		TGAColor color;
+		color.r = this->r * c;
+		color.g = this->g * c;
+		color.b = this->b * c;
+		color.a = this->a * c;
+		return color;
+	}
+
+	TGAColor operator +(TGAColor r) {
+		TGAColor color;
+		color.r = this->r + r.r;
+		color.g = this->g + r.g;
+		color.b = this->b + r.b;
+		color.a = this->a + r.a;
+		return color;
+	}
+
 };
 
 
@@ -85,6 +108,7 @@ public:
 	bool flip_vertically();
 	bool scale(int w, int h);
 	TGAColor get(int x, int y);
+	TGAColor get_spec(int x, int y);
 	bool set(int x, int y, TGAColor c);
 	~TGAImage();
 	TGAImage & operator =(const TGAImage &img);

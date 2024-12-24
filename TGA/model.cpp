@@ -103,3 +103,18 @@ std::vector<int> Model::face_normals(int idx)
 {
     return faces_normals[idx];
 }
+
+Vec3f Model::get_vertex(int idx, int i)
+{
+    return verts_[faces_[idx][i]];
+}
+
+Vec2f Model::get_texture(int idx, int i)
+{
+    return texcoords_[faces_texcoords[idx][i]];
+}
+
+Vec3f Model::get_normal(int idx, int i)
+{
+    return normals_[faces_normals[idx][i]];
+}

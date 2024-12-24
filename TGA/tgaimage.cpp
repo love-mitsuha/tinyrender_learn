@@ -9,7 +9,7 @@ TGAImage::TGAImage() : data(NULL), width(0), height(0), bytespp(0) {
 }
 
 TGAImage::TGAImage(int w, int h, int bpp) : data(NULL), width(w), height(h), bytespp(bpp) {
-	unsigned long nbytes = width*height*bytespp;
+	unsigned long nbytes = width * height * bytespp;
 	data = new unsigned char[nbytes];
 	memset(data, 0, nbytes);
 }
@@ -252,7 +252,15 @@ TGAColor TGAImage::get(int x, int y) {
 	if (!data || x<0 || y<0 || x>=width || y>=height) {
 		return TGAColor();
 	}
-	return TGAColor(data+(x+y*width)*bytespp, bytespp);
+	return TGAColor(data + (x + y * width) * bytespp, bytespp);
+}
+
+TGAColor TGAImage::get_spec(int x, int y)
+{
+	if (!data || x < 0 || y < 0 || x >= width || y >= height) {
+		return TGAColor();
+	}
+	return TGAColor(data + (x + y * width) * bytespp);
 }
 
 bool TGAImage::set(int x, int y, TGAColor c) {

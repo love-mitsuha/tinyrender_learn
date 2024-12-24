@@ -1,12 +1,12 @@
-#include "tgaimage.h"
-#include "Bresenham.h"
-#include "model.h"
+#include <chrono>
 #include <iostream>
 #include "geometry.h"
 #include "triangle.h"
 #include "render.h"
-#include <math.h>
-#include <Windows.h>
+#include "tgaimage.h"
+#include "Bresenham.h"
+#include "model.h"
+#include "shader.h"
 #define image "D:\\tinyrender_learn\\image\\"
 #define african_head "D:\\tinyrender_learn\\resource\\african_head\\"
 #define boggie "D:\\tinyrender_learn\\resource\\boggie\\"
@@ -26,13 +26,20 @@ const int width = 1600;
 const int height = 1600;
 const int texture_width = 1024;
 const int texture_height = 1024;
+const int normal_map_width = 1024;
+const int normal_map_height = 1024;
+const int spec_map_width = 1024;
+const int spec_map_height = 1024;
 float *zbuffer = NULL;
-Vec3f light_dir = Vec3f(0, 0, -1).normalize();
-Vec3f camera = Vec3f(-1, 0, 1);
+Vec3f light_dir = Vec3f(-1, -1, -1).normalize();
+Vec3f camera = Vec3f(-1, 1, 3);
 Vec3f center = Vec3f(0, 0, 0);
 Vec3f up = Vec3f(0, 1, 0);
+TGAImage canvas(width, height, TGAImage::RGB);
 
 int main(int argc, char** argv) {
+
+    auto start = std::chrono::high_resolution_clock::now();
 
     /*Vec2i t0[3] = { Vec2i(100, 100),   Vec2i(50, 200),  Vec2i(200, 300) };
     Vec2i t1[3] = { Vec2i(100, 200),  Vec2i(300, 100),   Vec2i(200, 300) };
@@ -67,47 +74,98 @@ int main(int argc, char** argv) {
     render.write_tga_file("scene2D.tga");*/
 
     
-    
-    const char* filename = african_head"african_head.obj";
-    Model model = Model(filename);
-    TGAImage canvas(width, height, TGAImage::RGB);
-    zbuffer = new float[width * height];
-    for (int i = 0; i < width * height; i++) {
-        zbuffer[i] = std::numeric_limits<float>::lowest();
-    }
-    TGAImage texture(texture_width,texture_height,24);
-    texture.read_tga_file(african_head"african_head_diffuse.tga");
 
+    //GouraudShader shader_gouarud(MVP, viewport, texture, light_dir);
+    //for (int i = 0; i < model.nfaces(); i++)
+    //{
+    //    std::vector<int> face = model.face(i);//面顶点坐标索引
+    //    std::vector<int> face_texture = model.face_texture(i);//面的顶点纹理索引
+    //    std::vector<int> face_normal = model.face_normals(i);//面的顶点法线索引
+    //    Vec3f obj_coords[3];
+    //    Vec3f normal_coords[3];
+    //    Vec2f texture_coords[3];
+    //    for (int j = 0; j < 3; j++)
+    //    {
+    //        obj_coords[j] = model.vert(face[j]);
+    //        texture_coords[j] = model.get_texture(face_texture[j]);
+    //        normal_coords[j] = model.get_normals(face_normal[j]);
+    //        shader_gouarud.get_vertex_info(j, obj_coords, texture_coords, normal_coords);
+    //    }
+    //    rasterize(shader_gouarud, canvas, zbuffer);
+    //}
+    //canvas.flip_vertically();
+    //canvas.write_tga_file(image "african_head_gouraud.tga");
+    
     Matrix4f modelM = Matrix4f::identity(4);//模型坐标转换世界坐标 模型初始就与世界坐标重合故为单位阵
     Matrix4f view = View(camera, center, up);//世界坐标转换相机坐标
     Matrix4f projection = Matrix4f::identity(4);//投影矩阵 没有设置远近平面
     projection[3][2] = -1.f / (camera - center).norm();
     Matrix4f viewport = NDC2view(view_x, view_y, view_width, view_height, (center - camera).norm());
     Matrix4f MVP = projection * view * modelM;
-    for (int i = 0; i < model.nfaces(); i++) {
-        std::vector<int> face = model.face(i);//面顶点坐标索引
-        std::vector<int> face_texture = model.face_texture(i);//面的顶点纹理索引
-        std::vector<int> face_normal = model.face_normals(i);//面的顶点法线索引
-        Vec3f obj_coords[3];
-        Vec3f screen_coords[3];
-        Vec3f normal_coords[3];
-        Vec2f texture_coords[3];
-        TGAColor texture_value[3];
-        for (int j = 0; j < 3; j++)
-        {
-            obj_coords[j] = model.vert(face[j]);
-            screen_coords[j] = perspective_homo2vec(viewport * MVP * vec2homo(obj_coords[j]));
-            texture_coords[j] = model.get_texture(face_texture[j]);
-            normal_coords[j] = model.get_normals(face_normal[j]);
-        }
-        rasterize(screen_coords, texture_coords, normal_coords, light_dir, viewport, canvas, texture, zbuffer);
+    zbuffer = new float[width * height];
+    for (int i = 0; i < width * height; i++) {
+        zbuffer[i] = std::numeric_limits<float>::lowest();
     }
     
+
+
+    const char* filename = african_head"african_head.obj";
+    Model model_head = Model(filename);
+    TGAImage texture_head(texture_width, texture_height, 24);
+    texture_head.read_tga_file(african_head"african_head_diffuse.tga");
+    TGAImage normal_map_head(normal_map_width, normal_map_height, 32);
+    normal_map_head.read_tga_file(african_head"african_head_nm.tga");
+    TGAImage spec_map_head(spec_map_width, spec_map_height, 8);
+    spec_map_head.read_tga_file(african_head"african_head_spec.tga");
+
+    filename = african_head"african_head_eye_inner.obj";
+    Model model_eye_inner = Model(filename);
+    TGAImage texture_eye_inner(256, 256, 24);
+    texture_eye_inner.read_tga_file(african_head"african_head_eye_inner_diffuse.tga");
+    TGAImage normal_map_eye_inner(256, 256, 32);
+    normal_map_eye_inner.read_tga_file(african_head"african_head_eye_inner_nm.tga");
+    TGAImage spec_map_eye_inner(256, 256, 32);
+    spec_map_eye_inner.read_tga_file(african_head"african_head_eye_inner_spec.tga");
+
+    PhoneShader shader_phone(MVP, viewport, texture_head, normal_map_head, spec_map_head, light_dir);
+
+    
+    for (int i = 0; i < model_head.nfaces(); i++)
+    {
+        std::vector<int> face = model_head.face(i);//面顶点坐标索引
+        std::vector<int> face_texture = model_head.face_texture(i);//面的顶点纹理索引
+        std::vector<int> face_normal = model_head.face_normals(i);//面的顶点法线索引
+
+        Vec3f obj_coords[3];
+        Vec3f normal_coords[3];
+        Vec2f texture_coords[3];
+        for (int j = 0; j < 3; j++)
+        {
+            obj_coords[j] = model_head.vert(face[j]);
+            texture_coords[j] = model_head.get_texture(face_texture[j]);
+            normal_coords[j] = model_head.get_normals(face_normal[j]);
+            shader_phone.get_vertex_info(j, obj_coords, texture_coords, normal_coords);
+        }
+        rasterize(shader_phone, canvas, zbuffer);
+    }
+
+    //shader_phone.~PhoneShader();
+
+
+
+
+
+
+
     canvas.flip_vertically();
-    canvas.write_tga_file(image "african_head_texture_perspective_normal.tga");
+    canvas.write_tga_file(image "african_head_phone.tga");
 
 
 
+
+    auto end = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::seconds>(end - start).count();
+    std::cout << "渲染时间 " << duration << " seconds" << std::endl;
     return 0;
 }
 
