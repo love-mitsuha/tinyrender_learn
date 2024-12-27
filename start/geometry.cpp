@@ -5,15 +5,26 @@
 #include "geometry.h"
 
 //齐次式转换
-col4f vec2homo(Vec3f v)
+col4fp point2homo(Vec3f v)
 {
-	col4f m;
+	col4fp m;
 	m[0][0] = v.x;
 	m[1][0] = v.y;
 	m[2][0] = v.z;
 	m[3][0] = 1.f;
 	return m;
 }
+
+col4fv vec2homo(Vec3f v)
+{
+	col4fp m;
+	m[0][0] = v.x;
+	m[1][0] = v.y;
+	m[2][0] = v.z;
+	m[3][0] = 0.f;
+	return m;
+}
+
 
 //由归一化坐标系转换为视口坐标系
 Matrix4f NDC2view(int x, int y, int w, int h, int depth)
@@ -29,7 +40,7 @@ Matrix4f NDC2view(int x, int y, int w, int h, int depth)
 	return m;
 }
 
-Vec3f perspective_homo2vec(col4f m)
+Vec3f perspective_homo2vec(col4fp m)
 {
 	Vec3f v;
 	v.x = m[0][0] / m[3][0];
@@ -55,7 +66,7 @@ Matrix4f View(Vec3f camera, Vec3f center, Vec3f up)
 	return m * tr;
 }
 
-Vec3f homo2vec(col4f m)
+Vec3f homo2vec(col4fv m)
 {
 	Vec3f v;
 	v.x = m[0][0];
@@ -63,3 +74,14 @@ Vec3f homo2vec(col4f m)
 	v.z = m[2][0];
 	return v;
 }
+
+Vec3f color2vec(TGAColor color)
+{
+	Vec3f v;
+	v.x = color.r * 2.0 / 255.0 - 1.f;
+	v.y = color.g * 2.0 / 255.0 - 1.f;
+	v.z = color.b * 2.0 / 255.0 - 1.f;
+	return v;
+}
+
+

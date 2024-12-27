@@ -32,7 +32,7 @@ const int spec_map_width = 1024;
 const int spec_map_height = 1024;
 float *zbuffer = NULL;
 Vec3f light_dir = Vec3f(-1, -1, -1).normalize();
-Vec3f camera = Vec3f(-1, 1, 3);
+Vec3f camera = Vec3f(1, 1, 3);
 Vec3f center = Vec3f(0, 0, 0);
 Vec3f up = Vec3f(0, 1, 0);
 TGAImage canvas(width, height, TGAImage::RGB);
@@ -114,7 +114,7 @@ int main(int argc, char** argv) {
     TGAImage texture_head(texture_width, texture_height, 24);
     texture_head.read_tga_file(african_head"african_head_diffuse.tga");
     TGAImage normal_map_head(normal_map_width, normal_map_height, 32);
-    normal_map_head.read_tga_file(african_head"african_head_nm.tga");
+    normal_map_head.read_tga_file(african_head"african_head_nm_tangent.tga");
     TGAImage spec_map_head(spec_map_width, spec_map_height, 8);
     spec_map_head.read_tga_file(african_head"african_head_spec.tga");
 
@@ -127,7 +127,7 @@ int main(int argc, char** argv) {
     TGAImage spec_map_eye_inner(256, 256, 32);
     spec_map_eye_inner.read_tga_file(african_head"african_head_eye_inner_spec.tga");
 
-    PhoneShader shader_phone(MVP, viewport, texture_head, normal_map_head, spec_map_head, light_dir);
+    PhoneShader shader_phone(MVP, viewport, texture_head, normal_map_head, spec_map_head, light_dir, center-camera);
 
     
     for (int i = 0; i < model_head.nfaces(); i++)
@@ -145,6 +145,7 @@ int main(int argc, char** argv) {
             texture_coords[j] = model_head.get_texture(face_texture[j]);
             normal_coords[j] = model_head.get_normals(face_normal[j]);
             shader_phone.get_vertex_info(j, obj_coords, texture_coords, normal_coords);
+            
         }
         rasterize(shader_phone, canvas, zbuffer);
     }

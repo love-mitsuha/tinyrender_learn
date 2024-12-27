@@ -4,6 +4,7 @@
 #include <vector>
 #include <cassert>
 #include <iostream>
+#include "tgaimage.h"
 
 template<size_t DimCols, size_t DimRows, typename T> class mat;
 
@@ -57,6 +58,12 @@ template<size_t DIM, typename T>vec<DIM, T> operator+(vec<DIM, T> lhs, const vec
 
 template<size_t DIM, typename T>vec<DIM, T> operator-(vec<DIM, T> lhs, const vec<DIM, T>& rhs) {
     for (size_t i = DIM; i--; lhs[i] -= rhs[i]);
+    return lhs;
+}
+
+template<size_t DIM, typename T>vec<DIM, T> operator-(vec<DIM, T> lhs)
+{
+    for (size_t i = DIM; i--; lhs[i] = -lhs[i]);
     return lhs;
 }
 
@@ -218,17 +225,23 @@ typedef vec<3, int>   Vec3i;
 typedef vec<4, float> Vec4f;
 typedef mat<4, 4, float> Matrix4f;
 typedef mat<4, 4, int> Matrix4i;
-typedef mat<4, 1, float> col4f;
+typedef mat<4, 1, float> col4fp;
+typedef mat<4, 1, float> col4fv;
+typedef mat<3, 3, float> Matrix3f;
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-col4f vec2homo(Vec3f v);
+Vec3f color2vec(TGAColor color);
 
-Vec3f homo2vec(col4f v);
+col4fp point2homo(Vec3f v);
+
+col4fv vec2homo(Vec3f v);
+
+Vec3f homo2vec(col4fv v);
 
 Matrix4f NDC2view(int x, int y, int w, int h, int depth);
 
-Vec3f perspective_homo2vec(col4f m);
+Vec3f perspective_homo2vec(col4fp m);
 
 Matrix4f View(Vec3f camera, Vec3f center, Vec3f up);
 /////////////////////////////////////////////////////////////////////////////////////////////

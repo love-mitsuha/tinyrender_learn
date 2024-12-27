@@ -11,21 +11,8 @@ D:\tinyrender_learn\TGA\tgaimage.h(69,21): warning C4244: “=”: 从“float�
 D:\tinyrender_learn\TGA\tgaimage.h(70,21): warning C4244: “=”: 从“float”转换到“unsigned char”，可能丢失数据
   (编译源文件“shader.cpp”)
   
-D:\tinyrender_learn\start\shader.cpp(36,42): warning C4244: “=”: 从“double”转换到“T”，可能丢失数据
-D:\tinyrender_learn\start\shader.cpp(36,42): warning C4244:         with
-D:\tinyrender_learn\start\shader.cpp(36,42): warning C4244:         [
-D:\tinyrender_learn\start\shader.cpp(36,42): warning C4244:             T=float
-D:\tinyrender_learn\start\shader.cpp(36,42): warning C4244:         ]
-D:\tinyrender_learn\start\shader.cpp(37,42): warning C4244: “=”: 从“double”转换到“T”，可能丢失数据
-D:\tinyrender_learn\start\shader.cpp(37,42): warning C4244:         with
-D:\tinyrender_learn\start\shader.cpp(37,42): warning C4244:         [
-D:\tinyrender_learn\start\shader.cpp(37,42): warning C4244:             T=float
-D:\tinyrender_learn\start\shader.cpp(37,42): warning C4244:         ]
-D:\tinyrender_learn\start\shader.cpp(38,42): warning C4244: “=”: 从“double”转换到“T”，可能丢失数据
-D:\tinyrender_learn\start\shader.cpp(38,42): warning C4244:         with
-D:\tinyrender_learn\start\shader.cpp(38,42): warning C4244:         [
-D:\tinyrender_learn\start\shader.cpp(38,42): warning C4244:             T=float
-D:\tinyrender_learn\start\shader.cpp(38,42): warning C4244:         ]
-D:\tinyrender_learn\start\shader.cpp(43,13): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
-D:\tinyrender_learn\start\shader.cpp(45,17): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+D:\tinyrender_learn\start\shader.cpp(40,13): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+D:\tinyrender_learn\start\shader.cpp(43,17): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+D:\tinyrender_learn\start\shader.cpp(79,13): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+D:\tinyrender_learn\start\shader.cpp(82,17): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
   start.vcxproj -> D:\tinyrender_learn\start\x64\Debug\start.exe
