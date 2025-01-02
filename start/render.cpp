@@ -28,7 +28,7 @@ void rasterize2D(Vec2i p1, Vec2i p2, TGAImage& image, TGAColor color,float alpha
 	
 }
 
-void rasterize(Vec3f screen_coords[], Vec2f texture_coords[], Vec3f normal_coords[], Vec3f light_dir, Matrix4f viewport, TGAImage& image, TGAImage texture, float* zbuffer)
+void rasterize(Vec3f screen_coords[], Vec2f texture_coords[], Vec3f normal_coords[], Vec3f light_dir, Matrix4f viewport, TGAImage& image, TGAImage texture_map, float* zbuffer)
 {
 
 	//bbox必须使用int
@@ -51,9 +51,9 @@ void rasterize(Vec3f screen_coords[], Vec2f texture_coords[], Vec3f normal_coord
 			P_normal = normal_coords[0] * BaryCentric.x + normal_coords[1] * BaryCentric.y + normal_coords[2] * BaryCentric.z;
 			//P_normal = homo2vec((M.transpose()).invert() * vec2homo(P_normal));
 			float alpha = -(P_normal * light_dir) > 0 ? -(P_normal * light_dir) : 0;//法线向外
-			int texture_x = static_cast<int>(P_texture.x * texture.get_width());
-			int texture_y = static_cast<int>((1. - P_texture.y) * texture.get_height());//纹理坐标如果从左上角开始就要翻转
-			TGAColor color = texture.get(texture_x, texture_y) * alpha;
+			int texture_x = static_cast<int>(P_texture.x * texture_map.get_width());
+			int texture_y = static_cast<int>((1. - P_texture.y) * texture_map.get_height());//纹理坐标如果从左上角开始就要翻转
+			TGAColor color = texture_map.get(texture_x, texture_y) * alpha;
 			if (BaryCentric.x < 0 || BaryCentric.y < 0 || BaryCentric.z < 0)
 				continue;
 			if (zbuffer[idx] < P.z)

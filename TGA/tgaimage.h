@@ -1,7 +1,9 @@
+#pragma once
 #ifndef __IMAGE_H__
 #define __IMAGE_H__
 
 #include <fstream>
+#include "geometry.h"
 
 #pragma pack(push,1)
 struct TGA_Header {
@@ -108,7 +110,9 @@ public:
 	bool flip_vertically();
 	bool scale(int w, int h);
 	TGAColor get(int x, int y);
+	TGAColor get(Vec2f v);
 	TGAColor get_spec(int x, int y);
+	TGAColor get_spec(Vec2f v);
 	bool set(int x, int y, TGAColor c);
 	~TGAImage();
 	TGAImage & operator =(const TGAImage &img);
@@ -118,5 +122,8 @@ public:
 	unsigned char *buffer();
 	void clear();
 };
+
+Vec3f color2vec(TGAColor color);
+
 
 #endif //__IMAGE_H__

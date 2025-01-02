@@ -31,11 +31,12 @@ const int normal_map_height = 1024;
 const int spec_map_width = 1024;
 const int spec_map_height = 1024;
 float *zbuffer = NULL;
-Vec3f light_dir = Vec3f(-1, -1, -1).normalize();
+Vec3f light_dir = Vec3f(-1, -1, -1).normalize();//appoint to model
 Vec3f camera = Vec3f(1, 1, 3);
 Vec3f center = Vec3f(0, 0, 0);
 Vec3f up = Vec3f(0, 1, 0);
 TGAImage canvas(width, height, TGAImage::RGB);
+TGAColor ambient(5, 5, 5, 255);
 
 int main(int argc, char** argv) {
 
@@ -95,19 +96,39 @@ int main(int argc, char** argv) {
     //}
     //canvas.flip_vertically();
     //canvas.write_tga_file(image "african_head_gouraud.tga");
+
+      /*filename = african_head"african_head_eye_inner.obj";
+    Model model_eye_inner = Model(filename);
+    TGAImage texture_eye_inner(256, 256, 24);
+    texture_eye_inner.read_tga_file(african_head"african_head_eye_inner_diffuse.tga");
+    TGAImage normal_map_eye_inner(256, 256, 32);
+    normal_map_eye_inner.read_tga_file(african_head"african_head_eye_inner_nm.tga");
+    TGAImage spec_map_eye_inner(256, 256, 32);
+    spec_map_eye_inner.read_tga_file(african_head"african_head_eye_inner_spec.tga");*/
     
+    Vertex vertex;
+    Light light;
+    Texture texture;
+    Transform transform;
+
+    light.light_gl = light_dir;
+    light.view_dir = center - camera;
+    light.ambient = ambient;
+
     Matrix4f modelM = Matrix4f::identity(4);//模型坐标转换世界坐标 模型初始就与世界坐标重合故为单位阵
     Matrix4f view = View(camera, center, up);//世界坐标转换相机坐标
     Matrix4f projection = Matrix4f::identity(4);//投影矩阵 没有设置远近平面
     projection[3][2] = -1.f / (camera - center).norm();
-    Matrix4f viewport = NDC2view(view_x, view_y, view_width, view_height, (center - camera).norm());
-    Matrix4f MVP = projection * view * modelM;
+    transform.model = modelM;
+    transform.view = view;
+    transform.projection = projection;
+    transform.viewport = NDC2view(view_x, view_y, view_width, view_height);
+    transform.MVP = projection * view * modelM;
     zbuffer = new float[width * height];
     for (int i = 0; i < width * height; i++) {
         zbuffer[i] = std::numeric_limits<float>::lowest();
     }
     
-
 
     const char* filename = african_head"african_head.obj";
     Model model_head = Model(filename);
@@ -118,17 +139,13 @@ int main(int argc, char** argv) {
     TGAImage spec_map_head(spec_map_width, spec_map_height, 8);
     spec_map_head.read_tga_file(african_head"african_head_spec.tga");
 
-    filename = african_head"african_head_eye_inner.obj";
-    Model model_eye_inner = Model(filename);
-    TGAImage texture_eye_inner(256, 256, 24);
-    texture_eye_inner.read_tga_file(african_head"african_head_eye_inner_diffuse.tga");
-    TGAImage normal_map_eye_inner(256, 256, 32);
-    normal_map_eye_inner.read_tga_file(african_head"african_head_eye_inner_nm.tga");
-    TGAImage spec_map_eye_inner(256, 256, 32);
-    spec_map_eye_inner.read_tga_file(african_head"african_head_eye_inner_spec.tga");
+    texture.texture_map = texture_head;
+    texture.normal_map = normal_map_head;
+    texture.spec_map = spec_map_head;
 
-    PhoneShader shader_phone(MVP, viewport, texture_head, normal_map_head, spec_map_head, light_dir, center-camera);
+    
 
+    PhoneShader shader_phone(light, transform, texture);
     
     for (int i = 0; i < model_head.nfaces(); i++)
     {
@@ -144,17 +161,10 @@ int main(int argc, char** argv) {
             obj_coords[j] = model_head.vert(face[j]);
             texture_coords[j] = model_head.get_texture(face_texture[j]);
             normal_coords[j] = model_head.get_normals(face_normal[j]);
-            shader_phone.get_vertex_info(j, obj_coords, texture_coords, normal_coords);
-            
         }
+        shader_phone.Vertex(obj_coords, texture_coords, normal_coords);
         rasterize(shader_phone, canvas, zbuffer);
     }
-
-    //shader_phone.~PhoneShader();
-
-
-
-
 
 
 

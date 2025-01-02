@@ -7,7 +7,7 @@ template <typename Shader> void rasterize(Shader shader, TGAImage& image, float*
 	Vec3f screen_coords[3];
 	for (int i = 0; i < 3; i++)
 	{
-		screen_coords[i] = shader.vertex(i);
+		screen_coords[i] = shader.get_vertex(i);
 	}
 	int xmin = std::floor(std::min(screen_coords[0].x, std::min(screen_coords[1].x, screen_coords[2].x)));
 	int xmax = std::ceil(std::max(screen_coords[0].x, std::max(screen_coords[1].x, screen_coords[2].x)));
@@ -36,5 +36,5 @@ template <typename Shader> void rasterize(Shader shader, TGAImage& image, float*
 
 void rasterize2D(Vec2i p1, Vec2i p2, TGAImage& image, TGAColor color, float alpha, int ybuffer[]);
 
-void rasterize(Vec3f screen_coords[], Vec2f texture_coords[], Vec3f normal_coords[], Vec3f light_dir, Matrix4f viewport, TGAImage& image, TGAImage texture, float* zbuffer);
+void rasterize(Vec3f screen_coords[], Vec2f texture_coords[], Vec3f normal_coords[], Vec3f light_dir, Matrix4f viewport, TGAImage& image, TGAImage texture_map, float* zbuffer);
 
