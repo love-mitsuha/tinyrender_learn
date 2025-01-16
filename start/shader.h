@@ -5,6 +5,7 @@
 
 struct Vertex
 {
+	Vec3f cur_screen;
 	Vec3f model_coords[3];
 	Vec2f texture_coords[3];
 	Vec3f normal_coords[3];
@@ -15,7 +16,9 @@ struct Vertex
 
 struct Transform
 {
-	Matrix23f TB;
+	int width;
+	int height;
+	Vec3f Tangent;
 	Matrix3f Rotate;
 	Matrix3f TBN;
 	Matrix3f TBN_IT;
@@ -25,11 +28,13 @@ struct Transform
 	Matrix4f projection;
 	Matrix4f MVP;
 	Matrix4f MVP_IT;
-	
+	Matrix4f gl2shadow;
 };
 
 struct Light
 {
+	float* shadowbuffer;
+	Vec3f point_light;
 	Vec3f light_tangent;
 	Vec3f view_dir;
 	Vec3f view_dir_tangent;
@@ -43,6 +48,7 @@ struct Texture
 	TGAImage texture_map;
 	TGAImage normal_map;
 	TGAImage spec_map;
+	TGAImage glow_map;
 };
 
 
@@ -91,7 +97,7 @@ public:
 
 	void Vertex(Vec3f obj_coords[], Vec2f texture_coords[], Vec3f normal_coords[]);
 	
-	Matrix23f get_TB();
+	Vec3f get_Tangent();
 
 	TGAColor fragment(Vec3f Barycenter);
 
@@ -101,6 +107,35 @@ public:
 
 	Vec3f get_vertex(int i) { return vertex.screen_coords[i]; }
 };
+
+class ShadowShader:public BaseShader
+{
+private:
+	Vec2f varying_uv;
+	Vertex vertex;
+	Transform transform;
+
+public:
+	ShadowShader(Transform _transform)
+	{
+		transform = _transform;
+		transform.Rotate = transform.MVP.get_minor(3, 3);
+		transform.MVP_IT = transform.MVP.invert();
+	}
+	~ShadowShader(){}
+	void Vertex(Vec3f obj_coords[]);
+	TGAColor fragment(Vec3f Barycenter);
+	Vec3f get_vertex(int i) { return vertex.screen_coords[i]; }
+};
+
+
+
+
+
+
+
+
+
 
 
 
@@ -114,7 +149,7 @@ public:
 		MVP = _MVP;
 		viewport = _viewport;
 		texture_map = _texture;
-		light_dir = _light_dir;
+		para_light = _light_dir;
 	}
 	GouraudShader(){}
 	~GouraudShader(){}
@@ -132,7 +167,7 @@ private:
 	Vec3f vertex_screen_coords[3];
 	Vec2f texture_coords[3];
 	Vec3f vertex_normal_coords[3];
-	Vec3f light_dir;
+	Vec3f para_light;
 	TGAImage texture_map;
 	TGAImage normal_map;
 	TGAImage spec_map;

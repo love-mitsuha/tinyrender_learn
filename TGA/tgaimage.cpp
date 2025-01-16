@@ -265,7 +265,7 @@ TGAColor TGAImage::get(Vec2f v)
 	return TGAColor(data + (x + y * width) * bytespp, bytespp);
 }
 
-Vec3f color2vec(TGAColor color)
+Vec3f color2normal(TGAColor color)
 {
 	Vec3f v;
 	v.x = color.r * 2.0 / 255.0 - 1.f;
@@ -274,7 +274,16 @@ Vec3f color2vec(TGAColor color)
 	return v;
 }
 
-TGAColor TGAImage::get_spec(int x, int y)
+Vec3f color2spec(TGAColor color)
+{
+	Vec3f v;
+	v.x = color.r * 255.0;
+	v.y = color.g * 255.0;
+	v.z = color.b * 255.0;
+	return v;
+}
+
+TGAColor TGAImage::get_spec_gray(int x, int y)
 {
 	if (!data || x < 0 || y < 0 || x >= width || y >= height) {
 		return TGAColor();
@@ -282,7 +291,7 @@ TGAColor TGAImage::get_spec(int x, int y)
 	return TGAColor(data + (x + y * width) * bytespp);
 }
 
-TGAColor TGAImage::get_spec(Vec2f v)
+TGAColor TGAImage::get_spec_gray(Vec2f v)
 {
 	int x = static_cast<int>(v.x * width);
 	int y = static_cast<int>((1. - v.y) * height);

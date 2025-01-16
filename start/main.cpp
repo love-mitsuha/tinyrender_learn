@@ -30,13 +30,18 @@ const int normal_map_width = 1024;
 const int normal_map_height = 1024;
 const int spec_map_width = 1024;
 const int spec_map_height = 1024;
+const int glow_map_width = 1024;
+const int glow_map_height = 1024;
 float *zbuffer = NULL;
-Vec3f light_dir = Vec3f(-1, -1, -1).normalize();//appoint to model
-Vec3f camera = Vec3f(1, 1, 3);
+float* shadowbuffer = NULL;
+Vec3f point_light = Vec3f(1, 1, 1);
+Vec3f para_light = Vec3f(-1, -1, -1).normalize();//appoint to model
+Vec3f camera = Vec3f(0, 0, 1);
 Vec3f center = Vec3f(0, 0, 0);
 Vec3f up = Vec3f(0, 1, 0);
 TGAImage canvas(width, height, TGAImage::RGB);
-TGAColor ambient(5, 5, 5, 255);
+TGAImage depth(width, height, TGAImage::GRAYSCALE);
+TGAColor ambient(5, 5, 5, 0);
 
 int main(int argc, char** argv) {
 
@@ -97,7 +102,7 @@ int main(int argc, char** argv) {
     //canvas.flip_vertically();
     //canvas.write_tga_file(image "african_head_gouraud.tga");
 
-      /*filename = african_head"african_head_eye_inner.obj";
+    /*filename = african_head"african_head_eye_inner.obj";
     Model model_eye_inner = Model(filename);
     TGAImage texture_eye_inner(256, 256, 24);
     texture_eye_inner.read_tga_file(african_head"african_head_eye_inner_diffuse.tga");
@@ -106,15 +111,67 @@ int main(int argc, char** argv) {
     TGAImage spec_map_eye_inner(256, 256, 32);
     spec_map_eye_inner.read_tga_file(african_head"african_head_eye_inner_spec.tga");*/
     
-    Vertex vertex;
+    /*const char* filename = african_head"african_head.obj";
+    Model model_head = Model(filename);
+    TGAImage texture_head(texture_width, texture_height, 24);
+    texture_head.read_tga_file(african_head"african_head_diffuse.tga");
+    TGAImage normal_map_head(normal_map_width, normal_map_height, 32);
+    normal_map_head.read_tga_file(african_head"african_head_nm.tga");
+    TGAImage spec_map_head(spec_map_width, spec_map_height, 8);
+    spec_map_head.read_tga_file(african_head"african_head_spec.tga");*/
+
+    const char* filename = diablo3_pose"diablo3_pose.obj";
+    Model model_head = Model(filename);
+    TGAImage texture_head(texture_width, texture_height, 24);
+    texture_head.read_tga_file(diablo3_pose"diablo3_pose_diffuse.tga");
+    TGAImage normal_map_head(normal_map_width, normal_map_height, 32);
+    normal_map_head.read_tga_file(diablo3_pose"diablo3_pose_nm.tga");
+    TGAImage spec_map_head(spec_map_width, spec_map_height, 24);
+    spec_map_head.read_tga_file(diablo3_pose"diablo3_pose_spec.tga");
+    TGAImage glow_map(glow_map_width, glow_map_height, 24);
+    glow_map.read_tga_file(diablo3_pose"diablo3_pose_glow.tga");
+
     Light light;
     Texture texture;
     Transform transform;
+    Transform transform_shadow;
+    
+    shadowbuffer = new float[width * height];
+    for (int i = 0; i < width * height; i++) {
+        shadowbuffer[i] = std::numeric_limits<float>::lowest();
+    }
+    Matrix4f modelM_shadow = Matrix4f::identity(4);//模型坐标转换世界坐标 模型初始就与世界坐标重合故为单位阵
+    Matrix4f view_shadow = View(point_light, center, up);//世界坐标转换相机坐标
+    Matrix4f projection_shadow = Matrix4f::identity(4);//投影矩阵 没有设置远近平面
+    projection_shadow[3][2] = -1.f / (point_light - center).norm();
+    transform_shadow.model = modelM_shadow;
+    transform_shadow.view = view_shadow;
+    transform_shadow.projection = projection_shadow;
+    transform_shadow.viewport = NDC2view(view_x, view_y, view_width, view_height);
+    transform_shadow.MVP = projection_shadow * view_shadow * modelM_shadow;
+    ShadowShader shader_shadow(transform_shadow);
+    for (int i = 0; i < model_head.nfaces(); i++)
+    {
+        std::vector<int> face = model_head.face(i);//面顶点坐标索引
+        Vec3f obj_coords[3];
+        for (int j = 0; j < 3; j++)
+        {
+            obj_coords[j] = model_head.vert(face[j]);
+        }
+        shader_shadow.Vertex(obj_coords);
+        rasterize_depth(shader_shadow, depth, shadowbuffer);
+    }
+    depth.flip_vertically();
+    depth.write_tga_file(image "diablo3_pose_depth.tga");
 
-    light.light_gl = light_dir;
+    light.light_gl = para_light;
     light.view_dir = center - camera;
     light.ambient = ambient;
-
+    light.shadowbuffer = shadowbuffer;
+    texture.texture_map = texture_head;
+    texture.normal_map = normal_map_head;
+    texture.spec_map = spec_map_head;
+    texture.glow_map = glow_map;
     Matrix4f modelM = Matrix4f::identity(4);//模型坐标转换世界坐标 模型初始就与世界坐标重合故为单位阵
     Matrix4f view = View(camera, center, up);//世界坐标转换相机坐标
     Matrix4f projection = Matrix4f::identity(4);//投影矩阵 没有设置远近平面
@@ -124,29 +181,14 @@ int main(int argc, char** argv) {
     transform.projection = projection;
     transform.viewport = NDC2view(view_x, view_y, view_width, view_height);
     transform.MVP = projection * view * modelM;
+    transform.gl2shadow = transform_shadow.MVP;
+    transform.width = width;
+    transform.height = height;
     zbuffer = new float[width * height];
     for (int i = 0; i < width * height; i++) {
         zbuffer[i] = std::numeric_limits<float>::lowest();
     }
-    
-
-    const char* filename = african_head"african_head.obj";
-    Model model_head = Model(filename);
-    TGAImage texture_head(texture_width, texture_height, 24);
-    texture_head.read_tga_file(african_head"african_head_diffuse.tga");
-    TGAImage normal_map_head(normal_map_width, normal_map_height, 32);
-    normal_map_head.read_tga_file(african_head"african_head_nm_tangent.tga");
-    TGAImage spec_map_head(spec_map_width, spec_map_height, 8);
-    spec_map_head.read_tga_file(african_head"african_head_spec.tga");
-
-    texture.texture_map = texture_head;
-    texture.normal_map = normal_map_head;
-    texture.spec_map = spec_map_head;
-
-    
-
-    PhoneShader shader_phone(light, transform, texture);
-    
+    PhoneShader shader_phone(light, transform, texture);      
     for (int i = 0; i < model_head.nfaces(); i++)
     {
         std::vector<int> face = model_head.face(i);//面顶点坐标索引
@@ -163,17 +205,12 @@ int main(int argc, char** argv) {
             normal_coords[j] = model_head.get_normals(face_normal[j]);
         }
         shader_phone.Vertex(obj_coords, texture_coords, normal_coords);
-        rasterize(shader_phone, canvas, zbuffer);
+        rasterize_shadow(shader_phone, canvas, zbuffer, shadowbuffer);
     }
-
-
-
     canvas.flip_vertically();
-    canvas.write_tga_file(image "african_head_phone.tga");
+    canvas.write_tga_file(image "diablo3_pose_phone.tga");
 
-
-
-
+    
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::seconds>(end - start).count();
     std::cout << "渲染时间 " << duration << " seconds" << std::endl;

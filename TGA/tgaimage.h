@@ -111,8 +111,8 @@ public:
 	bool scale(int w, int h);
 	TGAColor get(int x, int y);
 	TGAColor get(Vec2f v);
-	TGAColor get_spec(int x, int y);
-	TGAColor get_spec(Vec2f v);
+	TGAColor get_spec_gray(int x, int y);
+	TGAColor get_spec_gray(Vec2f v);
 	bool set(int x, int y, TGAColor c);
 	~TGAImage();
 	TGAImage & operator =(const TGAImage &img);
@@ -123,7 +123,8 @@ public:
 	void clear();
 };
 
-Vec3f color2vec(TGAColor color);
+Vec3f color2normal(TGAColor color);
 
+Vec3f color2spec(TGAColor color);
 
 #endif //__IMAGE_H__

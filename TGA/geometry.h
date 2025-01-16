@@ -240,7 +240,7 @@ Vec3f homo2vec(col4f v);
 
 Matrix4f NDC2view(int x, int y, int w, int h);
 
-Vec3f perspective_homo2point(col4f m);
+col4f perspective_div(col4f m);
 
 Matrix4f View(Vec3f camera, Vec3f center, Vec3f up);
 /////////////////////////////////////////////////////////////////////////////////////////////
