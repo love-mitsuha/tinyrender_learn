@@ -15,15 +15,17 @@ void PhoneShader::Vertex(Vec3f obj_coords[], Vec2f texture_coords[], Vec3f norma
 	transform.Tangent = get_Tangent();
 }
 
-void ShadowShader::Vertex(Vec3f obj_coords[])
+void ShadowShader::Vertex(Vec3f obj_coords[],Vec2f texture_coords[])
 {
 	for (size_t i = 0; i < 3; i++)
 	{
 		vertex.model_coords[i] = obj_coords[i];
 		vertex.ndc_coords[i] = homo2point(perspective_div(transform.MVP * point2homo(obj_coords[i])));
 		vertex.screen_coords[i] = homo2point(transform.viewport * perspective_div(transform.MVP * point2homo(obj_coords[i])));
+		vertex.texture_coords[i] = texture_coords[i];
 	}
 }
+
 
 //法线插值
 TGAColor PhoneShader::fragment(Vec3f Barycenter)
@@ -74,7 +76,7 @@ TGAColor PhoneShader::fragment_global_nm(Vec3f Barycenter)
 	float diffuse = -normal * light.light_gl > 0 ? -normal * light.light_gl : 0;//normal向外 light向里
 	//镜面反射
 	Vec3f half = -(light.view_dir + light.light_gl) / (light.view_dir + light.light_gl).norm();//view向里 半程向量h需要反向与normal对齐
-	float hightlight_coeff = std::pow(std::max(half * normal, 0.0f), 128);// 128是高光指数，用于控制高光的大小和锐度
+	float hightlight_coeff = std::pow(std::max(half * normal, 0.0f), 32);// 32是高光指数，用于控制高光的大小和锐度
 	TGAColor spec_color = texture.spec_map.get(varying_uv);
 	Vec3f spec = Vec3f(spec_color.raw[0] * hightlight_coeff, spec_color.raw[1] * hightlight_coeff, spec_color.raw[2] * hightlight_coeff);
 	//发光贴图
@@ -145,10 +147,13 @@ TGAColor PhoneShader::fragment_tangent_nm(Vec3f Barycenter)
 TGAColor ShadowShader::fragment(Vec3f Barycenter)
 {
 	Vec3f p = vertex.screen_coords[0] * Barycenter.x + vertex.screen_coords[1] * Barycenter.y + vertex.screen_coords[2] * Barycenter.z;
+	varying_uv = vertex.texture_coords[0] * Barycenter.x + vertex.texture_coords[1] * Barycenter.y + vertex.texture_coords[2] * Barycenter.z;
 	TGAColor white(255, 255, 255, 255);
-	TGAColor color = white * 0.6 * p.z;
+	TGAColor color = white * 0.8 * p.z;
 	return color;
 }
+
+
 
 Vec3f PhoneShader::get_Tangent()
 {

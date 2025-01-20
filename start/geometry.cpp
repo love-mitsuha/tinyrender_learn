@@ -3,6 +3,8 @@
 #include <cassert>
 #include <iostream>
 #include "geometry.h"
+#define M_PI 3.1416
+
 
 //Æë´ÎÊ½×ª»»
 col4f point2homo(Vec3f v)
@@ -76,5 +78,28 @@ Vec3f homo2vec(col4f m)
 	return v;
 }
 
+Vec3f rand_point_on_unit_sphere()
+{
+	float u = (float)rand() / (float)RAND_MAX;
+	float v = (float)rand() / (float)RAND_MAX;
+	float theta = 2.f * M_PI * u;
+	float phi = acos(2.f * v - 1.f);
+	return Vec3f(sin(phi) * cos(theta), sin(phi) * sin(theta), cos(phi));
+}
 
-
+float max_elevation_angle(Vec2f p, Vec2f dir, Vec2i W_H, float* zbuffer)
+{
+	float max_angle = 0;
+	for (float t = 0; t < 1000.; t++)
+	{
+		Vec2f cur = p + dir * t;
+		if (cur.x<0 || cur.x>=W_H.x || cur.y<0 || cur.y>=W_H.y)
+			continue;
+		float distance = (p - cur).norm();
+		if (distance < 1.)
+			continue;
+		float elevation = zbuffer[int(cur.x) + int(cur.y) * W_H.x] - zbuffer[int(p.x) + int(p.y) * W_H.x];
+		max_angle = std::max(max_angle, atanf(elevation / distance));
+	}
+	return max_angle;
+}

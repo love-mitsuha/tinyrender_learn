@@ -1,18 +1,110 @@
-﻿  shader.cpp
+﻿  main.cpp
 D:\tinyrender_learn\TGA\tgaimage.h(69,21): warning C4244: “=”: 从“float”转换到“unsigned char”，可能丢失数据
-  (编译源文件“shader.cpp”)
+  (编译源文件“main.cpp”)
   
 D:\tinyrender_learn\TGA\tgaimage.h(70,21): warning C4244: “=”: 从“float”转换到“unsigned char”，可能丢失数据
-  (编译源文件“shader.cpp”)
+  (编译源文件“main.cpp”)
   
 D:\tinyrender_learn\TGA\tgaimage.h(71,21): warning C4244: “=”: 从“float”转换到“unsigned char”，可能丢失数据
-  (编译源文件“shader.cpp”)
+  (编译源文件“main.cpp”)
   
 D:\tinyrender_learn\TGA\tgaimage.h(72,21): warning C4244: “=”: 从“float”转换到“unsigned char”，可能丢失数据
-  (编译源文件“shader.cpp”)
+  (编译源文件“main.cpp”)
   
-D:\tinyrender_learn\start\shader.cpp(67,15): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
-D:\tinyrender_learn\start\shader.cpp(77,25): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
-D:\tinyrender_learn\start\shader.cpp(101,15): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
-D:\tinyrender_learn\start\shader.cpp(149,27): warning C4305: “参数”: 从“double”到“float”截断
+D:\tinyrender_learn\start\render.h(43,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+      D:\tinyrender_learn\start\render.h(43,11):
+      模板实例化上下文(最早的实例化上下文)为
+          D:\tinyrender_learn\start\main.cpp(162,9):
+          查看对正在编译的函数 模板 实例化“void rasterize_depth<ShadowShader>(Shader,TGAImage &,float *)”的引用
+          with
+          [
+              Shader=ShadowShader
+          ]
+  
+D:\tinyrender_learn\start\render.h(44,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+D:\tinyrender_learn\start\render.h(45,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+D:\tinyrender_learn\start\render.h(46,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+D:\tinyrender_learn\start\render.h(48,13): warning C4244: “=”: 从“int”转换到“T”，可能丢失数据
+D:\tinyrender_learn\start\render.h(48,13): warning C4244:         with
+D:\tinyrender_learn\start\render.h(48,13): warning C4244:         [
+D:\tinyrender_learn\start\render.h(48,13): warning C4244:             T=float
+D:\tinyrender_learn\start\render.h(48,13): warning C4244:         ]
+  (编译源文件“main.cpp”)
+  
+D:\tinyrender_learn\start\render.h(50,14): warning C4244: “=”: 从“int”转换到“T”，可能丢失数据
+D:\tinyrender_learn\start\render.h(50,14): warning C4244:         with
+D:\tinyrender_learn\start\render.h(50,14): warning C4244:         [
+D:\tinyrender_learn\start\render.h(50,14): warning C4244:             T=float
+D:\tinyrender_learn\start\render.h(50,14): warning C4244:         ]
+  (编译源文件“main.cpp”)
+  
+D:\tinyrender_learn\start\render.h(61,21): warning C4244: “参数”: 从“T”转换到“int”，可能丢失数据
+D:\tinyrender_learn\start\render.h(61,21): warning C4244:         with
+D:\tinyrender_learn\start\render.h(61,21): warning C4244:         [
+D:\tinyrender_learn\start\render.h(61,21): warning C4244:             T=float
+D:\tinyrender_learn\start\render.h(61,21): warning C4244:         ]
+  (编译源文件“main.cpp”)
+  
+D:\tinyrender_learn\start\render.h(61,16): warning C4244: “参数”: 从“T”转换到“int”，可能丢失数据
+D:\tinyrender_learn\start\render.h(61,16): warning C4244:         with
+D:\tinyrender_learn\start\render.h(61,16): warning C4244:         [
+D:\tinyrender_learn\start\render.h(61,16): warning C4244:             T=float
+D:\tinyrender_learn\start\render.h(61,16): warning C4244:         ]
+  (编译源文件“main.cpp”)
+  
+D:\tinyrender_learn\start\render.h(74,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+      D:\tinyrender_learn\start\render.h(74,11):
+      模板实例化上下文(最早的实例化上下文)为
+          D:\tinyrender_learn\start\main.cpp(208,9):
+          查看对正在编译的函数 模板 实例化“void rasterize_shadow<PhoneShader>(Shader,TGAImage &,float *,float *)”的引用
+          with
+          [
+              Shader=PhoneShader
+          ]
+  
+D:\tinyrender_learn\start\render.h(75,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+D:\tinyrender_learn\start\render.h(76,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+D:\tinyrender_learn\start\render.h(77,11): warning C4244: “初始化”: 从“float”转换到“int”，可能丢失数据
+  (编译源文件“main.cpp”)
+  
+D:\tinyrender_learn\start\render.h(79,13): warning C4244: “=”: 从“int”转换到“T”，可能丢失数据
+D:\tinyrender_learn\start\render.h(79,13): warning C4244:         with
+D:\tinyrender_learn\start\render.h(79,13): warning C4244:         [
+D:\tinyrender_learn\start\render.h(79,13): warning C4244:             T=float
+D:\tinyrender_learn\start\render.h(79,13): warning C4244:         ]
+  (编译源文件“main.cpp”)
+  
+D:\tinyrender_learn\start\render.h(81,14): warning C4244: “=”: 从“int”转换到“T”，可能丢失数据
+D:\tinyrender_learn\start\render.h(81,14): warning C4244:         with
+D:\tinyrender_learn\start\render.h(81,14): warning C4244:         [
+D:\tinyrender_learn\start\render.h(81,14): warning C4244:             T=float
+D:\tinyrender_learn\start\render.h(81,14): warning C4244:         ]
+  (编译源文件“main.cpp”)
+  
+D:\tinyrender_learn\start\render.h(92,21): warning C4244: “参数”: 从“T”转换到“int”，可能丢失数据
+D:\tinyrender_learn\start\render.h(92,21): warning C4244:         with
+D:\tinyrender_learn\start\render.h(92,21): warning C4244:         [
+D:\tinyrender_learn\start\render.h(92,21): warning C4244:             T=float
+D:\tinyrender_learn\start\render.h(92,21): warning C4244:         ]
+  (编译源文件“main.cpp”)
+  
+D:\tinyrender_learn\start\render.h(92,16): warning C4244: “参数”: 从“T”转换到“int”，可能丢失数据
+D:\tinyrender_learn\start\render.h(92,16): warning C4244:         with
+D:\tinyrender_learn\start\render.h(92,16): warning C4244:         [
+D:\tinyrender_learn\start\render.h(92,16): warning C4244:             T=float
+D:\tinyrender_learn\start\render.h(92,16): warning C4244:         ]
+  (编译源文件“main.cpp”)
+  
   start.vcxproj -> D:\tinyrender_learn\start\x64\Debug\start.exe

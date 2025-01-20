@@ -12,6 +12,7 @@
 #define boggie "D:\\tinyrender_learn\\resource\\boggie\\"
 #define diablo3_pose "D:\\tinyrender_learn\\resource\\diablo3_pose\\"
 #define fulilian "D:\\tinyrender_learn\\resource\\fu\\"
+#define M_PI 3.1416
 
 const TGAColor white = TGAColor(255, 255, 255, 255);
 const TGAColor red = TGAColor(127, 0, 0, 255);
@@ -32,15 +33,18 @@ const int spec_map_width = 1024;
 const int spec_map_height = 1024;
 const int glow_map_width = 1024;
 const int glow_map_height = 1024;
+const Vec2i W_H(width, height);
 float *zbuffer = NULL;
 float* shadowbuffer = NULL;
-Vec3f point_light = Vec3f(1, 1, 1);
-Vec3f para_light = Vec3f(-1, -1, -1).normalize();//appoint to model
-Vec3f camera = Vec3f(0, 0, 1);
+Vec3f point_light = Vec3f(0, 0, -1);
+Vec3f para_light = Vec3f(1, 1, 1).normalize();//appoint to model
+Vec3f camera = Vec3f(-1, -1, -3);
 Vec3f center = Vec3f(0, 0, 0);
 Vec3f up = Vec3f(0, 1, 0);
 TGAImage canvas(width, height, TGAImage::RGB);
 TGAImage depth(width, height, TGAImage::GRAYSCALE);
+TGAImage ssao(width, height, TGAImage::RGB);
+TGAImage ssao_frame(texture_width, texture_height, TGAImage::GRAYSCALE);
 TGAColor ambient(5, 5, 5, 0);
 
 int main(int argc, char** argv) {
@@ -111,6 +115,28 @@ int main(int argc, char** argv) {
     TGAImage spec_map_eye_inner(256, 256, 32);
     spec_map_eye_inner.read_tga_file(african_head"african_head_eye_inner_spec.tga");*/
     
+    /*SSAO后处理
+    for (int x = 0; x < width; x++)
+    {
+        for (int y = 0; y < height; y++)
+        {
+            if (shadowbuffer[x + y * width] < -1e5)
+                continue;
+            float total = 0;
+            for (float angle = 0; angle < 2 * M_PI; angle += M_PI / 4)
+            {
+                total += M_PI / 2 - max_elevation_angle(Vec2f(x, y), Vec2f(cos(angle), sin(angle)), W_H, shadowbuffer);
+            }
+            total /= (M_PI / 2) * 8;
+            total = pow(total, 15.);
+            ssao.set(x, y, TGAColor(255 * total, 255 * total, 255 * total, 255 * total));
+        }
+    }
+    ssao.flip_vertically();
+    ssao.write_tga_file(image "diablo3_pose_ssao.tga");
+    ssao_frame.flip_vertically();
+    ssao_frame.write_tga_file(image "diablo3_pose_ssao_frame.tga");*/
+
     /*const char* filename = african_head"african_head.obj";
     Model model_head = Model(filename);
     TGAImage texture_head(texture_width, texture_height, 24);
@@ -131,11 +157,8 @@ int main(int argc, char** argv) {
     TGAImage glow_map(glow_map_width, glow_map_height, 24);
     glow_map.read_tga_file(diablo3_pose"diablo3_pose_glow.tga");
 
-    Light light;
-    Texture texture;
-    Transform transform;
-    Transform transform_shadow;
     
+    Transform transform_shadow;
     shadowbuffer = new float[width * height];
     for (int i = 0; i < width * height; i++) {
         shadowbuffer[i] = std::numeric_limits<float>::lowest();
@@ -153,17 +176,23 @@ int main(int argc, char** argv) {
     for (int i = 0; i < model_head.nfaces(); i++)
     {
         std::vector<int> face = model_head.face(i);//面顶点坐标索引
+        std::vector<int> face_texture = model_head.face_texture(i);//面的顶点纹理索引
         Vec3f obj_coords[3];
+        Vec2f texture_coords[3];
         for (int j = 0; j < 3; j++)
         {
             obj_coords[j] = model_head.vert(face[j]);
+            texture_coords[j] = model_head.get_texture(face_texture[j]);
         }
-        shader_shadow.Vertex(obj_coords);
-        rasterize_depth(shader_shadow, depth, shadowbuffer);
+        shader_shadow.Vertex(obj_coords, texture_coords);
+        rasterize(shader_shadow, depth, shadowbuffer);
     }
     depth.flip_vertically();
     depth.write_tga_file(image "diablo3_pose_depth.tga");
-
+    
+    Light light;
+    Texture texture;
+    Transform transform;
     light.light_gl = para_light;
     light.view_dir = center - camera;
     light.ambient = ambient;
@@ -205,7 +234,7 @@ int main(int argc, char** argv) {
             normal_coords[j] = model_head.get_normals(face_normal[j]);
         }
         shader_phone.Vertex(obj_coords, texture_coords, normal_coords);
-        rasterize_shadow(shader_phone, canvas, zbuffer, shadowbuffer);
+        rasterize(shader_phone, canvas, zbuffer, shadowbuffer);
     }
     canvas.flip_vertically();
     canvas.write_tga_file(image "diablo3_pose_phone.tga");

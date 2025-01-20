@@ -24,6 +24,7 @@ template <typename T> struct vec<2, T> {
     template <class U> vec<2, T>(const vec<2, U>& v);
     T& operator[](const size_t i) { assert(i < 2); return i <= 0 ? x : y; }
     const T& operator[](const size_t i) const { assert(i < 2); return i <= 0 ? x : y; }
+    float norm() { return std::sqrt(x * x + y * y); }
 
     T x, y;
 };
@@ -243,6 +244,10 @@ Matrix4f NDC2view(int x, int y, int w, int h);
 col4f perspective_div(col4f m);
 
 Matrix4f View(Vec3f camera, Vec3f center, Vec3f up);
+
+Vec3f rand_point_on_unit_sphere();
+
+float max_elevation_angle(Vec2f p, Vec2f dir, Vec2i W_H, float* zbuffer);
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 #endif //__GEOMETRY_H__

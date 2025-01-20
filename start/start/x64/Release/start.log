@@ -1,0 +1,19 @@
+﻿  shader.cpp
+D:\tinyrender_learn\TGA\tgaimage.h(69,21): warning C4244: “=”: 从“float”转换到“unsigned char”，可能丢失数据
+  (编译源文件“shader.cpp”)
+  
+D:\tinyrender_learn\TGA\tgaimage.h(70,21): warning C4244: “=”: 从“float”转换到“unsigned char”，可能丢失数据
+  (编译源文件“shader.cpp”)
+  
+D:\tinyrender_learn\TGA\tgaimage.h(71,21): warning C4244: “=”: 从“float”转换到“unsigned char”，可能丢失数据
+  (编译源文件“shader.cpp”)
+  
+D:\tinyrender_learn\TGA\tgaimage.h(72,21): warning C4244: “=”: 从“float”转换到“unsigned char”，可能丢失数据
+  (编译源文件“shader.cpp”)
+  
+D:\tinyrender_learn\start\shader.cpp(69,15): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+D:\tinyrender_learn\start\shader.cpp(79,25): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+D:\tinyrender_learn\start\shader.cpp(103,15): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+D:\tinyrender_learn\start\shader.cpp(152,27): warning C4305: “参数”: 从“double”到“float”截断
+LINK : warning LNK4075: 忽略“/INCREMENTAL”(由于“/OPT:ICF”规范)
+  start.vcxproj -> D:\tinyrender_learn\start\x64\Release\start.exe

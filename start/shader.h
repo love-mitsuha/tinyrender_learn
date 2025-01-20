@@ -88,13 +88,9 @@ public:
 		light.light_ndc = transform.Rotate * light.light_gl;
 	}
 
-
 	PhoneShader(){}
-	~PhoneShader() override 
-	{
-		
-	}
-
+	~PhoneShader(){}
+	
 	void Vertex(Vec3f obj_coords[], Vec2f texture_coords[], Vec3f normal_coords[]);
 	
 	Vec3f get_Tangent();
@@ -123,22 +119,11 @@ public:
 		transform.MVP_IT = transform.MVP.invert();
 	}
 	~ShadowShader(){}
-	void Vertex(Vec3f obj_coords[]);
+	void Vertex(Vec3f obj_coords[], Vec2f texture_coords[]);
 	TGAColor fragment(Vec3f Barycenter);
 	Vec3f get_vertex(int i) { return vertex.screen_coords[i]; }
+	Vec2f get_varying_uv() { return varying_uv; }
 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 class GouraudShader:public BaseShader
 {
@@ -154,7 +139,7 @@ public:
 	GouraudShader(){}
 	~GouraudShader(){}
 
-	void get_vertex_info(int vertex_idx, Vec3f obj_coords[], Vec2f _texture_coords[], Vec3f _normal_coords[]);
+	void Vertex(Vec3f obj_coords[], Vec2f texture_coords[], Vec3f normal_coords[]);
 
 	TGAColor fragment(Vec3f Barycenter);
 
